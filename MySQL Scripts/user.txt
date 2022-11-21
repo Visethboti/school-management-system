@@ -1,0 +1,2 @@
+username: schoolmanagementsystem
+password: schoolmanagementsystem2022
