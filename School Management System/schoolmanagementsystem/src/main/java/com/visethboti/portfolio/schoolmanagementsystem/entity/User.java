@@ -34,6 +34,9 @@ public class User {
 	@Column(name="sex")
 	private char sex;
 	
+	@Column(name="enabled")
+	private int enabled;
+	
 	@Column(name="role")
 	private String role;
 	
@@ -43,13 +46,17 @@ public class User {
 		
 	}
 
-	public User(String password, String firstName, String lastName, String address, int age, char sex, String role) {
+	public User(int userID, String password, String firstName, String lastName, String address, int age, char sex,
+			int enabled, String role) {
+		super();
+		this.userID = userID;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.age = age;
 		this.sex = sex;
+		this.enabled = enabled;
 		this.role = role;
 	}
 
@@ -57,6 +64,8 @@ public class User {
 	
 	// define getter/setter
 	
+	
+
 	public int getUserID() {
 		return userID;
 	}
@@ -121,11 +130,22 @@ public class User {
 		this.role = role;
 	}
 	
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
 	// define toString	
+
 
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", address=" + address + ", age=" + age + ", sex=" + sex + ", role=" + role + "]";
+				+ lastName + ", address=" + address + ", age=" + age + ", sex=" + sex + ", enabled=" + enabled
+				+ ", role=" + role + "]";
 	}
+	
 }

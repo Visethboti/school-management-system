@@ -30,6 +30,7 @@ CREATE TABLE User (
     age int,
     sex char(1),
     role varchar(50),
+    enabled tinyint(4) DEFAULT NULL,
     primary key (userID)
 );
 
