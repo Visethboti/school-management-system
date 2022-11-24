@@ -2,15 +2,16 @@ package com.visethboti.portfolio.schoolmanagementsystem.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value={"/"})
 public class LoginController {
 
 	@GetMapping("/showMyLoginPage")
 	public String showMyLoginPage() {
 		
-		return "fancy-login";
-		
+		return "login";
 	}
 	
 	// add request mapping for /access-denied

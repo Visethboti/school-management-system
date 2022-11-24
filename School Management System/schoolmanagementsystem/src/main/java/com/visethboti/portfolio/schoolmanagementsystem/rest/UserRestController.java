@@ -3,6 +3,7 @@ package com.visethboti.portfolio.schoolmanagementsystem.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class UserRestController {
 	
 	// inject user service (user constructor injection)
 	@Autowired
-	public UserRestController(UserService userService) {
+	public UserRestController(@Qualifier("userServiceImpl") UserService userService) {
 		this.userService = userService;
 	}
 	

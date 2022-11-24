@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Add User</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<span class="navbar-brand mb-0 h1">Add User</span>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a th:href="@{/}" class="nav-item nav-link active">Home <span class="sr-only">(current)</span></a>
+		</div>
+	</div>
+	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
+  </nav>
+  <body>
+    <main>
+    	<div class="container">
+    		<div class="row" style="margin-top: 50px;">
+    			<div class="col-md-8 offset-md-2">
+	    			<p  class="h4 mb-4">Add a New User</p>
+	    		</div>
+    			<form action="#" th:action="@{/adminhome/userdirectory/save}"
+    						 th:object="${user}" method="POST"  class="col-md-8 offset-md-2" >
+	    			<input type="text" th:field="*{firstName}" class="form-control mb-4" placeholder="First name" required>  
+	    			<input type="text" th:field="*{lastName}" class="form-control mb-4" placeholder="Last name" required> 
+	    			<input type="text" th:field="*{address}" class="form-control mb-4" placeholder="Address" required>  
+	    			<input type="number" th:field="*{age}" class="form-control mb-4" placeholder="Age" min="0" required>  
+	    			
+	    			<div class="form-control mb-4">
+	    				<div class="form-check form-check-inline">
+	    					<input type="radio" th:field="*{sex}" th:value="M" id="sexmale" class="form-check-input" required/>
+					    	<label class="form-check-label" for="sexmale">Male</label>
+	    				</div>
+		    			<div class="form-check form-check-inline">
+			    			<input type="radio" th:field="*{sex}" th:value="F" id="sexfemale" class="form-check-input" required/>
+						    <label class="form-check-label" for="sexfemale">Female</label>
+		    			</div>
+	    			</div>
+	    			
+	    			<div class="form-control mb-4">
+	    				<div class="form-check form-check-inline">
+	    					<input type="radio" th:field="*{role}" th:value="ROLE_STUDENT" id="role_student" class="form-check-input" required/>
+					    	<label class="form-check-label" for="role_student">Student</label>
+	    				</div>
+	    				<div class="form-check form-check-inline">
+	    					<input type="radio" th:field="*{role}" th:value="ROLE_FACULTY" id="role_faculty" class="form-check-input" required/>
+					    	<label class="form-check-label" for="role_faculty">Faculty</label>
+	    				</div>
+	    				<div class="form-check form-check-inline">
+	    					<input type="radio" th:field="*{role}" th:value="ROLE_ADMIN" id="role_admin" class="form-check-input" required/>
+					    	<label class="form-check-label" for="role_admin">Admin</label>
+	    				</div>
+	    			</div>
+	    			
+	    			<input type="text" th:field="*{password}" class="form-control mb-4" placeholder="Password" required>
+	    			
+	    			<button type="submit" class="btn btn-secondary btn-lg btn-block">Save</button> 
+	    		</form>
+	    		
+	    		
+	    		<hr class="col-md-8 offset-md-2">
+	    		<div class="col-md-8 offset-md-2">
+	    			<a th:href="@{/adminhome/userdirectory}" class="btn btn-secondary btn-lg">Back to User Directory</a>
+	    		</div>
+    		</div>	
+    		
+    		
+    	</div>
+    </main>
+  </body>
+</html>

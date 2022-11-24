@@ -9,10 +9,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// add a reference to our security data source
 	
@@ -34,18 +35,16 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-			.antMatchers("/").hasAnyRole("STUDENT", "STAFF", "ADMIN")
-			.antMatchers("/users/**").hasRole("ADMIN")
-			.antMatchers("/courses/**").hasRole("ADMIN")
-			.antMatchers("/sections/**").hasRole("ADMIN")
-			.antMatchers("/resources/**").permitAll()
+			.antMatchers("/").hasAnyRole("STUDENT", "FACULTY", "ADMIN")
+			.antMatchers("/studenthome/**").hasRole("STUDENT")
+			.antMatchers("/facultyhome/**").hasRole("FACULTY")
+			.antMatchers("/adminhome/**").hasRole("ADMIN")
 			.and()
 			.formLogin()
 				.loginPage("/showMyLoginPage")
 				.loginProcessingUrl("/authenticateTheUser")
-				.permitAll()
 			.and()
-			.logout().permitAll()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/showMyLoginPage")
 			.and()
 			.exceptionHandling().accessDeniedPage("/access-denied");
 		

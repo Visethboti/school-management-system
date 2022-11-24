@@ -1,8 +1,9 @@
-package com.visethboti.portfolio.schoolmanagementsystem.controller;
+package com.visethboti.portfolio.schoolmanagementsystem.controller.adminhome;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,12 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
-@RequestMapping(value={"/users"})
-public class UserController {
-private UserService userService;
+@RequestMapping(value={"/adminhome/userdirectory"})
+public class UserDirectoryController {
+	private UserService userService;
 	
 	@Autowired
-	public UserController(UserService theUserService) {
+	public UserDirectoryController(@Qualifier("userServiceImpl") UserService theUserService) {
 		userService = theUserService;
 	}
 	
@@ -31,10 +32,10 @@ private UserService userService;
 		// add to the Spring MVC model
 		theModel.addAttribute("users", Users);
 		
-		return "list-users";
+		return "user-directory";
 	}
 	
-	@GetMapping("/showFormForAdd")
+	@GetMapping("/adduser")
 	public String showFormForAdd(Model theModel) {
 		// create model attribute to bind form data
 		
@@ -42,7 +43,7 @@ private UserService userService;
 		
 		theModel.addAttribute("user", theUser);
 		
-		return "user-form.html";
+		return "add-user";
 	}
 	
 	@PostMapping("/save")
@@ -51,6 +52,6 @@ private UserService userService;
 		userService.save(theUser);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/users/list";
+		return "redirect:/adminhome/userdirectory";
 	}
 }
