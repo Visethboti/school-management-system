@@ -18,7 +18,6 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
-			<a th:href="@{userdirectory/adduser}" class="nav-item nav-link active">Add User<span class="sr-only">(current)</span></a>
 			<a th:href="@{userdirectory/studentdirectory}" class="nav-item nav-link active">Student Directory<span class="sr-only">(current)</span></a>
 			<a th:href="@{userdirectory/facultydirectory}" class="nav-item nav-link active">Faculty Directory<span class="sr-only">(current)</span></a>
 			<a th:href="@{userdirectory/admindirectory}" class="nav-item nav-link active">Admin Directory<span class="sr-only">(current)</span></a>
@@ -29,13 +28,18 @@
   <body>
     <main>
     	<div class="container" style="margin-top: 50px;">
+    		<a th:href="@{userdirectory/adduser}" class="btn btn-primary btn-lg btn-dark mb-4">Add User</a>
 	    	<table class="table table-bordered table-striped">
 	    		<thead class="thead-dark">
 	    			<tr>
 	    				<th>User ID</th>
 	    				<th>First Name</th>
 	    				<th>Last Name</th>
+	    				<th>Address</th>
+	    				<th>Age</th>
+	    				<th>Gender</th>
 	    				<th>Role</th>
+	    				<th>Enable</th>
 	    			</tr>
 	    		</thead>
 	    		<tbody>
@@ -43,7 +47,11 @@
 	    				<td th:text="${tempUser.userID}"/>
 	    				<td th:text="${tempUser.firstName}"/>
 	    				<td th:text="${tempUser.lastName}"/>
+	    				<td th:text="${tempUser.address}"/>
+	    				<td th:text="${tempUser.age}"/>
+	    				<td th:text="${tempUser.sex}"/>
 	    				<td th:text="${tempUser.role}"/>
+	    				<td th:text="${tempUser.enabled}"/>
 	    			</tr>
 	    		</tbody>
 	    	</table>

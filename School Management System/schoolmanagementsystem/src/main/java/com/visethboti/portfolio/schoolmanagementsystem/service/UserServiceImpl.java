@@ -3,7 +3,10 @@ package com.visethboti.portfolio.schoolmanagementsystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.visethboti.portfolio.schoolmanagementsystem.dao.UserRepository;
@@ -15,8 +18,25 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	public UserServiceImpl(UserRepository theUserRepository) {
 		this.userRepository = theUserRepository;
+	}
+	
+	@PostConstruct
+	private void addRootUser() {
+		Optional<User> result = userRepository.findById(1);
+		
+		if(result.isPresent()) {
+			
+		}else {
+			String password = "12345";
+			password = passwordEncoder.encode(password);
+			User theUser = new User(1, password, "Admin", "User", "admin address", 20, 'M', 1, "ROLE_ADMIN");
+			userRepository.save(theUser);
+		}
 	}
 	
 	@Override
@@ -42,6 +62,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User theUser) {
+		//encode the password
+		String password = theUser.getPassword(); 
+		password = passwordEncoder.encode(password);
+		theUser.setPassword(password);
+
 		userRepository.save(theUser);
 	}
 
