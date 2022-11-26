@@ -14,15 +14,8 @@ DROP TABLE IF EXISTS Faculty;
 DROP TABLE IF EXISTS Admin;
 DROP TABLE IF EXISTS User;
 
-
-
-
-
-
-
-
 CREATE TABLE User (
-    userID int NOT NULL AUTO_INCREMENT,
+    userID int NOT NULL,
     password char(68),
     firstName varchar(50),
     lastName varchar(50),

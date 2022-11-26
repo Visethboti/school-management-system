@@ -9,4 +9,8 @@ public interface UserService {
 	public User findById(int theUserID);
 	public void save(User theUser);
 	public void deleteById(int theUserID);
+	
+	public List<User> findAllStudent();
+	public List<User> findAllFaculty();
+	public List<User> findAllAdmin();
 }

@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.visethboti.portfolio.schoolmanagementsystem.entity.Student;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Admin;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
-import com.visethboti.portfolio.schoolmanagementsystem.service.StudentService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.AdminService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
-@RequestMapping("/adminhome/userdirectory/studentdirectory")
-public class StudentDirectoryController {
-	private StudentService studentService;
+@RequestMapping("/adminhome/userdirectory/admindirectory")
+public class AdminDirectoryController {
+	private AdminService adminService;
 	private UserService userService;
 	
 	@Autowired
-	public StudentDirectoryController(@Qualifier("studentServiceImpl") StudentService theStudentService,@Qualifier("userServiceImpl") UserService theUserService) {
-		studentService = theStudentService;
+	public AdminDirectoryController(@Qualifier("adminServiceImpl") AdminService theAdminService,@Qualifier("userServiceImpl") UserService theUserService) {
+		adminService = theAdminService;
 		userService = theUserService;
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listStudents(Model theModel) {
+	public String listAdmins(Model theModel) {
 		// get all Students
-		List<User> studentUser = userService.findAllStudent();
+		List<User> adminUser = userService.findAllAdmin();
 		
 		// add to the Spring MVC model
-		theModel.addAttribute("users", studentUser);
+		theModel.addAttribute("users", adminUser);
 		
-		return "/admin-home/student-directory";
+		return "/admin-home/admin-directory";
 	}
 	
-	@GetMapping("/addstudent")
+	@GetMapping("/addadmin")
 	public String showFormForAdd(Model theModel) {
 		// create model attribute to bind form data
 		
@@ -48,32 +48,32 @@ public class StudentDirectoryController {
 		
 		theModel.addAttribute("user", theUser);
 		
-		return "/admin-home/add-student";
+		return "/admin-home/add-admin";
 	}
 	
 	@PostMapping("/save")
-	public String saveStudent(@ModelAttribute("User") User theUser) {
+	public String saveAdmin(@ModelAttribute("User") User theUser) {
 		
-		Student theStudent = new Student(theUser.getUserID());
-		theUser.setRole("ROLE_STUDENT");
+		Admin theAdmin = new Admin(theUser.getUserID());
+		theUser.setRole("ROLE_ADMIN");
 		// save Student
 		userService.save(theUser);
-		studentService.save(theStudent);
+		adminService.save(theAdmin);
 		
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/userdirectory/studentdirectory";
+		return "redirect:/adminhome/userdirectory/admindirectory";
 	}
 	
 	@GetMapping("/update")
 	public String showUpdateForm(@RequestParam("userID") int theID, Model theModel) {
 		theModel.addAttribute("user", userService.findById(theID));
-		return "/admin-home/update-student";
+		return "/admin-home/update-admin";
 	}
 	
 	@GetMapping("/delete")
-	public String updateStudent(@RequestParam("userID") int theID) {
+	public String updateAdmin(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
-		return "redirect:/adminhome/userdirectory/studentdirectory";
+		return "redirect:/adminhome/userdirectory/admindirectory";
 	}
 }

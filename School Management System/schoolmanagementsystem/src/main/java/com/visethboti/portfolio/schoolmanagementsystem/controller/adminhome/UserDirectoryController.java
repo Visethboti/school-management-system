@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
@@ -36,7 +37,7 @@ public class UserDirectoryController {
 		// add to the Spring MVC model
 		theModel.addAttribute("users", Users);
 		
-		return "user-directory";
+		return "/admin-home/user-directory";
 	}
 	
 	@GetMapping("/adduser")
@@ -47,7 +48,7 @@ public class UserDirectoryController {
 		
 		theModel.addAttribute("user", theUser);
 		
-		return "add-user";
+		return "/admin-home/add-user";
 	}
 	
 	@PostMapping("/save")
@@ -56,6 +57,18 @@ public class UserDirectoryController {
 		userService.save(theUser);
 		
 		// use a redirect to prevent duplicate submissions
+		return "redirect:/adminhome/userdirectory";
+	}
+	
+	@GetMapping("/update")
+	public String showUpdateForm(@RequestParam("userID") int theID, Model theModel) {
+		theModel.addAttribute("user", userService.findById(theID));
+		return "/admin-home/update-user";
+	}
+	
+	@GetMapping("/delete")
+	public String updateUser(@RequestParam("userID") int theID) {
+		userService.deleteById(theID);
 		return "redirect:/adminhome/userdirectory";
 	}
 }

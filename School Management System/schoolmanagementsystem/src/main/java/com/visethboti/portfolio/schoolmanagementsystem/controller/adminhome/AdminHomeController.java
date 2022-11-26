@@ -11,12 +11,14 @@ public class AdminHomeController {
 	@GetMapping(value={""})
 	public String showAdminHomePage() {
 		
-		return "admin-home";
+		return "/admin-home/admin-home";
 	}
 	
+	/*
 	@GetMapping(value={"/**"})
 	public String redirectToHomePage() {
 		
 		return "redirect:/";
 	}
+	*/
 }

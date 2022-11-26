@@ -2,8 +2,6 @@ package com.visethboti.portfolio.schoolmanagementsystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,7 +10,6 @@ import javax.persistence.Table;
 public class User {
 	// define fields
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="userID")
 	private int userID;
 	
@@ -63,8 +60,6 @@ public class User {
 	
 	
 	// define getter/setter
-	
-	
 
 	public int getUserID() {
 		return userID;
@@ -137,7 +132,7 @@ public class User {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-
+	
 	// define toString	
 
 

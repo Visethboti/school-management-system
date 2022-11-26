@@ -44,4 +44,22 @@ public class UserServiceImplOld implements UserService {
 		UserDAO.deleteById(theUserID);
 	}
 
+	@Override
+	public List<User> findAllStudent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAllFaculty() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAllAdmin() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

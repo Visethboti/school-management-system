@@ -7,12 +7,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Add User</title>
+    <title>Add Faculty</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<span class="navbar-brand mb-0 h1">Add User</span>
+	<span class="navbar-brand mb-0 h1">Add Faculty</span>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home <span class="sr-only">(current)</span></a>
@@ -25,16 +25,25 @@
     	<div class="container">
     		<div class="row" style="margin-top: 50px;">
     			<div class="col-md-8 offset-md-2">
-	    			<p  class="h4 mb-4">Add a New User</p>
+	    			<p  class="h4 mb-4">Add a New Faculty User</p>
 	    		</div>
-    			<form action="#" th:action="@{/adminhome/userdirectory/save}"
+    			<form action="#" th:action="@{/adminhome/userdirectory/facultydirectory/save}"
     						 th:object="${user}" method="POST"  class="col-md-8 offset-md-2" >
-	    			<input type="text" th:field="*{firstName}" class="form-control mb-4" placeholder="First name" required>  
-	    			<input type="text" th:field="*{lastName}" class="form-control mb-4" placeholder="Last name" required> 
-	    			<input type="text" th:field="*{address}" class="form-control mb-4" placeholder="Address" required>  
-	    			<input type="number" th:field="*{age}" class="form-control mb-4" placeholder="Age" min="0" required>  
 	    			
-	    			<div class="form-control mb-4">
+	    			<label class="form-check-label" for="firstname">First Name</label>
+	    			<input type="text" th:field="*{firstName}" class="form-control mb-2" placeholder="First name" required>  
+	    			
+	    			<label class="form-check-label" for="lastname">Last Name</label>
+	    			<input type="text" th:field="*{lastName}" class="form-control mb-2" placeholder="Last name" required> 
+	    			
+	    			<label class="form-check-label" for="address">Address</label>
+	    			<input type="text" th:field="*{address}" class="form-control mb-2" placeholder="Address" required>  
+	    			
+	    			<label class="form-check-label" for="age">Age</label>
+	    			<input type="number" th:field="*{age}" class="form-control mb-2" placeholder="Age" min="0" required>  
+	    			
+	    			<label class="form-check-label">Gender</label>
+	    			<div class="form-control mb-2">
 	    				<div class="form-check form-check-inline">
 	    					<input type="radio" th:field="*{sex}" th:value="M" id="sexmale" class="form-check-input" required/>
 					    	<label class="form-check-label" for="sexmale">Male</label>
@@ -45,24 +54,16 @@
 		    			</div>
 	    			</div>
 	    			
-	    			<div class="form-control mb-4">
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_STUDENT" id="role_student" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_student">Student</label>
-	    				</div>
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_FACULTY" id="role_faculty" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_faculty">Faculty</label>
-	    				</div>
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_ADMIN" id="role_admin" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_admin">Admin</label>
-	    				</div>
-	    			</div>
+	    			<input type="hidden" th:field="*{role}">
 	    			
-	    			<input type="text" th:field="*{password}" class="form-control mb-4" placeholder="Password" required>
+	    			<label class="form-check-label" for="userid">User ID</label>
+	    			<input type="number" th:field="*{userID}" class="form-control mb-2" placeholder="User ID" required>
 	    			
-	    			<div class="form-control mb-4">
+	    			<label class="form-check-label" for="password">Password</label>
+	    			<input type="password" th:field="*{password}" class="form-control mb-2" placeholder="Password" required>
+	    			
+	    			<label class="form-check-label" for="enableuser">Activate User</label>
+	    			<div class="form-control mb-2">
 	    				<div class="form-check form-check-inline">
 	    					<input type="checkbox" th:field="*{enabled}" th:value="1" id="enabled" class="form-check-input" required/>
 					    	<label class="form-check-label" for="enabled">Enable</label>
@@ -75,7 +76,7 @@
 	    		
 	    		<hr class="col-md-8 offset-md-2">
 	    		<div class="col-md-8 offset-md-2">
-	    			<a th:href="@{/adminhome/userdirectory}" class="btn btn-secondary btn-lg">Back to User Directory</a>
+	    			<a th:href="@{/adminhome/userdirectory/facultydirectory/}" class="btn btn-secondary btn-lg">Back to Faculty User Directory</a>
 	    		</div>
     		</div>	
     		
