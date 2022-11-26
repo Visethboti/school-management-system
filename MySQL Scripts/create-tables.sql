@@ -49,7 +49,7 @@ CREATE TABLE Course (
 	courseID int,
     courseName varchar(255),
     courseCredit int,
-    courseDescription text,
+    courseDescription text, 
     primary key (courseID)
 );
 

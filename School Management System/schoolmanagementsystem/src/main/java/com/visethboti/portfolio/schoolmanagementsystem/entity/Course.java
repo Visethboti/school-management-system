@@ -11,7 +11,7 @@ public class Course {
 	// define fields
 	@Id
 	@Column(name="courseID")
-	private int adminID;
+	private int courseID;
 	
 	@Column(name="courseName")
 	private String courseName;
@@ -19,7 +19,7 @@ public class Course {
 	@Column(name="courseCredit")
 	private int courseCredit;
 	
-	@Column(name="courseDecription")
+	@Column(name="courseDescription")
 	private String courseDescription;
 
 	// constructors
@@ -27,8 +27,8 @@ public class Course {
 	public Course() {
 	}
 	
-	public Course(int adminID, String courseName, int courseCredit, String courseDescription) {
-		this.adminID = adminID;
+	public Course(int courseID, String courseName, int courseCredit, String courseDescription) {
+		this.courseID = courseID;
 		this.courseName = courseName;
 		this.courseCredit = courseCredit;
 		this.courseDescription = courseDescription;
@@ -36,12 +36,12 @@ public class Course {
 
 	// getter and setter
 	
-	public int getAdminID() {
-		return adminID;
+	public int getCourseID() {
+		return courseID;
 	}
 
-	public void setAdminID(int adminID) {
-		this.adminID = adminID;
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
 	}
 
 	public String getCourseName() {
@@ -72,7 +72,7 @@ public class Course {
 	
 	@Override
 	public String toString() {
-		return "Course [adminID=" + adminID + ", courseName=" + courseName + ", courseCredit=" + courseCredit
+		return "Course [courseID=" + courseID + ", courseName=" + courseName + ", courseCredit=" + courseCredit
 				+ ", courseDescription=" + courseDescription + "]";
 	}
 }
