@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Add New Course</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<span class="navbar-brand mb-0 h1">Add New Course</span>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a th:href="@{/}" class="nav-item nav-link active">Home <span class="sr-only">(current)</span></a>
+		</div>
+	</div>
+	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
+  </nav>
+  <body>
+    <main>
+    	<div class="container">
+    		<div class="row" style="margin-top: 50px;">
+    			
+    			<div class="col-md-8 offset-md-2">
+	    			<p  class="h4 mb-4">Course Info</p>
+	    		</div>
+    			
+	    		<div class="col-md-8 offset-md-2">
+		    		<label class="form-check-label" for="courseid">Course ID</label>
+	    			<input type="text" th:field="${course.courseID}" class="form-control mb-2" placeholder="ID" readonly="readonly">  
+	    			
+	    			<label class="form-check-label" for="coursename">Course Name</label>
+	    			<input type="text" th:field="${course.courseName}" class="form-control mb-2" placeholder="Name" readonly="readonly"> 
+	    			
+	    			<label class="form-check-label" for="coursecredit">Course Credit</label>
+	    			<input type="text" th:field="${course.courseCredit}" class="form-control mb-2" placeholder="Credit" readonly="readonly">  
+	    			
+	    			<label class="form-check-label" for="coursedes">Course Description</label>
+	    			<input type="text" th:field="${course.courseDescription}" class="form-control mb-2" placeholder="Desc" min="0" max="9999" readonly="readonly">  
+    			</div>
+    			
+	    		<hr class="col-md-8 offset-md-2">
+	    		
+	    		<div class="col-md-8 offset-md-2">
+	    			<p  class="h4 mb-2">Add a New Section</p>
+	    		</div>
+	    		
+    			<form action="#" th:action="@{/adminhome/coursedirectory/sections/save}"
+    						 th:object="${section}" method="POST"  class="col-md-8 offset-md-2" >
+
+	    			<label class="form-check-label" for="sectionid">Section ID</label>
+	    			<input type="number" th:field="*{sectionID}" class="form-control mb-2" placeholder="ID" min="0" max="999999" required>  
+	    			
+	    			<label class="form-check-label" for="coursename">Academic Year</label>
+	    			<input type="number" th:field="*{academicYear}" class="form-control mb-2" placeholder="Academic Year" required> 
+	    			
+	    			<input type="hidden" id="courseID" name="courseID" th:value="${course.courseID}">
+	    			
+	    			<button type="submit" class="btn btn-secondary btn-lg btn-block">Save</button> 
+	    		</form>
+	    		
+	    		
+	    		<hr class="col-md-8 offset-md-2">
+	    		<div class="col-md-8 offset-md-2">
+	    			<a th:href="@{/adminhome/coursedirectory/sections(courseID=${course.courseID})}" class="btn btn-secondary btn-lg">Back to Sections</a>
+	    		</div>
+    		</div>	
+    		
+    		
+    	</div>
+    </main>
+  </body>
+</html>

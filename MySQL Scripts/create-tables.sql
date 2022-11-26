@@ -56,7 +56,7 @@ CREATE TABLE Course (
 CREATE TABLE Section (
 	sectionID int,
     courseID int,
-    acamedicYear int,
+    academicYear int,
     primary key (sectionID),
     foreign key (courseID) references Course(courseID)
 );
