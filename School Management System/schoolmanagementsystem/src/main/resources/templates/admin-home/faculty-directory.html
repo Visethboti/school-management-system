@@ -55,10 +55,10 @@
 	    				<td th:text="${tempUser.role}"/>
 	    				<td th:text="${tempUser.enabled}"/>
 	    				<td>
-	    					<a th:href="@{/adminhome/userdirectory/admindirectory/update(userID=${tempUser.userID})}" class="btn btn-info btn-sm">
+	    					<a th:href="@{/adminhome/userdirectory/facultydirectory/update(userID=${tempUser.userID})}" class="btn btn-info btn-sm">
 	    						Update
 	    					</a>
-	    					<a th:href="@{/adminhome/userdirectory/admindirectory/delete(userID=${tempUser.userID})}" class="btn btn-danger btn-sm"
+	    					<a th:href="@{/adminhome/userdirectory/facultydirectory/delete(userID=${tempUser.userID})}" class="btn btn-danger btn-sm"
 	    						onclick="if (!(confirm('Are you sure you want to delete this admin user?'))) return false">
 	    						Delete
 	    					</a>

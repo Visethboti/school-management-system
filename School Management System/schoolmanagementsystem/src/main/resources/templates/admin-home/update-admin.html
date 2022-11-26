@@ -29,7 +29,9 @@
 	    		</div>
     			<form action="#" th:action="@{/adminhome/userdirectory/admindirectory/save}"
     						 th:object="${user}" method="POST"  class="col-md-8 offset-md-2">
-    				<input type="hidden" th:field="*{userID}" >  
+    				
+					<label class="form-check-label" for="firstname">User ID</label>	
+    				<input type="text" id="userid" th:field="*{userID}" class="form-control mb-2" readonly="readonly">  
     				 
     				<label class="form-check-label" for="firstname">First Name</label>	
 	    			<input type="text" id="firstname" th:field="*{firstName}" class="form-control mb-2" placeholder="First name" required> 
@@ -54,6 +56,8 @@
 						    <label class="form-check-label" for="sexfemale">Female</label>
 		    			</div>
 	    			</div>
+	    			
+	    			<input type="hidden" th:field="*{role}">
 	    			
 	    			<label class="form-check-label" for="password">Password</label>
 	    			<input type="password" id="password" th:field="*{password}" class="form-control mb-2" placeholder="Note: The old password will be kept if this is left empty">

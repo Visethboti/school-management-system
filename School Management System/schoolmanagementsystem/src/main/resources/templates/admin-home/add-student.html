@@ -54,7 +54,7 @@
 		    			</div>
 	    			</div>
 	    			
-	    			<input type="hidden" th:field="*{role}">
+	    			<input type="hidden" id="role" name="role" th:value="${'ROLE_STUDENT}">
 	    			
 	    			<label class="form-check-label" for="userid">User ID</label>
 	    			<input type="number" th:field="*{userID}" class="form-control mb-2" placeholder="User ID" required>

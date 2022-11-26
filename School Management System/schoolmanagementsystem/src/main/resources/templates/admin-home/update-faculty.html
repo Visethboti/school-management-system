@@ -29,7 +29,8 @@
 	    		</div>
     			<form action="#" th:action="@{/adminhome/userdirectory/facultydirectory/save}"
     						 th:object="${user}" method="POST"  class="col-md-8 offset-md-2">
-    				<input type="hidden" th:field="*{userID}" >  
+    				<label class="form-check-label" for="firstname">User ID</label>	
+    				<input type="text" id="userid" th:field="*{userID}" class="form-control mb-2" readonly="readonly">  
     				 
     				<label class="form-check-label" for="firstname">First Name</label>	
 	    			<input type="text" id="firstname" th:field="*{firstName}" class="form-control mb-2" placeholder="First name" required> 
@@ -42,6 +43,8 @@
 	    			
 	    			<label class="form-check-label" for="age">Age</label>
 	    			<input type="number" id="age" th:field="*{age}" class="form-control mb-2" placeholder="Age" min="0" required>  
+	    			
+	    			<input type="hidden" th:field="*{role}">
 	    			
 	    			<label class="form-check-label">Gender</label>
 	    			<div class="form-control mb-2">

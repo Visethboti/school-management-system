@@ -12,20 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.visethboti.portfolio.schoolmanagementsystem.entity.Faculty;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
-import com.visethboti.portfolio.schoolmanagementsystem.service.FacultyService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
 @RequestMapping("/adminhome/userdirectory/facultydirectory")
 public class FacultyDirectoryController {
-	private FacultyService facultyService;
 	private UserService userService;
 	
 	@Autowired
-	public FacultyDirectoryController(@Qualifier("facultyServiceImpl") FacultyService theFacultyService,@Qualifier("userServiceImpl") UserService theUserService) {
-		facultyService = theFacultyService;
+	public FacultyDirectoryController(@Qualifier("userServiceImpl") UserService theUserService) {
 		userService = theUserService;
 	}
 	
@@ -53,12 +49,8 @@ public class FacultyDirectoryController {
 	
 	@PostMapping("/save")
 	public String saveFaculty(@ModelAttribute("User") User theUser) {
-		
-		Faculty theFaculty = new Faculty(theUser.getUserID());
-		theUser.setRole("ROLE_FACULTY");
 		// save Student
 		userService.save(theUser);
-		facultyService.save(theFaculty);
 		
 		
 		// use a redirect to prevent duplicate submissions
