@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Create Assignment</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<span class="navbar-brand mb-0 h1" th:text="'Course '+${section.courseID}"></span>
+	<span class="navbar-brand mb-0 h1" th:text="'Section '+${section.sectionID}"></span>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/facultyhome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/facultyhome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Class List<span class="sr-only">(current)</span></a>
+		</div>
+	</div>
+	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
+  </nav>
+  <body>
+    <main>
+    	<div class="container">
+    		<div class="row" style="margin-top: 50px;">
+    			<div class="col-md-8 offset-md-2">
+	    			<p  class="h4 mb-4">Add a New Course</p>
+	    		</div>
+    			<form action="#" th:action="@{/facultyhome/sectioncontent/saveassignment(sectionID=${section.sectionID})}"
+    						 th:object="${assignment}" method="POST"  class="col-md-8 offset-md-2" > 
+	    			
+	    			<label class="form-check-label" for="assignmentname">Assignment Name</label>
+	    			<input type="text" th:field="*{assignmentName}" class="form-control mb-2" placeholder="Assignment Name" required> 
+	    			
+	    			<label class="form-check-label" for="assignmentDescription">Assignment Description</label>
+	    			<input type="text" th:field="*{assignmentDescription}" class="form-control mb-2" placeholder="Assignment Description" required>  
+	    			
+	    			<label class="form-check-label" for="assignmentGrade">Assignment Grade</label>
+	    			<input type="number" th:field="*{assignmentGrade}" class="form-control mb-2" placeholder="Desc" min="0" max="999" required>  
+	    			
+	    			<button type="submit" class="btn btn-secondary btn-lg btn-block">Save</button> 
+	    		</form>
+	    		
+	    		
+	    		<hr class="col-md-8 offset-md-2">
+	    		<div class="col-md-8 offset-md-2">
+	    			<a th:href="@{/facultyhome/sectioncontent(sectionID=${section.sectionID})}" class="btn btn-secondary btn-lg">Back to Section Home</a>
+	    		</div>
+    		</div>	
+    		
+    		
+    	</div>
+    </main>
+  </body>
+</html>

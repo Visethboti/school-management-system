@@ -77,7 +77,9 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/saveenroll")
-	public String saveStudent(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID) {
+	public String saveStudent(@RequestParam("sectionID") int theSectionID, 
+			@RequestParam("userID") int theStudentID,
+			@RequestParam("courseID") int theCourseID) {
 		Date now = new Date();
 		Timestamp timestamp = new Timestamp(now.getTime());
 		
@@ -87,7 +89,7 @@ public class SectionManagementController {
 		enrollService.save(theEnroll);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theEnroll.getSectionID();
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID;
 	}
 	
 	@GetMapping("/updateenroll")
@@ -99,9 +101,11 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/deleteenroll")
-	public String deleteEnroll(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID) {
+	public String deleteEnroll(@RequestParam("sectionID") int theSectionID, 
+			@RequestParam("userID") int theStudentID,
+			@RequestParam("courseID") int theCourseID) {
 		enrollService.deleteById(theSectionID, theStudentID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID;
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID;
 	}
 	
 	@GetMapping("/assignfaculty")
@@ -122,7 +126,9 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/saveteach")
-	public String saveFaculty(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theFacultyID) {
+	public String saveFaculty(@RequestParam("sectionID") int theSectionID, 
+			@RequestParam("userID") int theFacultyID, 
+			@RequestParam("courseID") int theCourseID) {
 		Date now = new Date();
 		Timestamp timestamp = new Timestamp(now.getTime());
 		
@@ -132,12 +138,14 @@ public class SectionManagementController {
 		teachService.save(theTeach);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theTeach.getSectionID();
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID;
 	}
 	
 	@GetMapping("/deleteteach")
-	public String deleteTeach(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theFacultyID) {
+	public String deleteTeach(@RequestParam("sectionID") int theSectionID, 
+			@RequestParam("userID") int theFacultyID,
+			@RequestParam("courseID") int theCourseID) {
 		teachService.deleteById(theSectionID, theFacultyID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID;
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID;
 	}
 }

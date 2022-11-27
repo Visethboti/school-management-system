@@ -5,56 +5,65 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.visethboti.portfolio.schoolmanagementsystem.dao.SectionRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.dao.TeachRepository;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Teach;
 
 @Service
 public class TeachServiceImpl implements TeachService {
 
-	private TeachRepository enrollRepository;
+	private TeachRepository teachRepository;
+	private SectionRepository sectionRepository;
 	
 	@Autowired
-	public TeachServiceImpl(TeachRepository theTeachRepository) {
-		this.enrollRepository = theTeachRepository;
+	public TeachServiceImpl(TeachRepository theTeachRepository, SectionRepository sectionRepository) {
+		this.teachRepository = theTeachRepository;
+		this.sectionRepository = sectionRepository;
 	}
 	
 	@Override
 	public List<Teach> findAll() {
-		return enrollRepository.findAll();
+		return teachRepository.findAll();
 	}
 
 	@Override
 	public Teach findById(int theSectionID, int theFacultyID) {
-		return enrollRepository.findBySectionIDAndFacultyID(theSectionID, theSectionID);
+		return teachRepository.findBySectionIDAndFacultyID(theSectionID, theSectionID);
 	}
 
 	@Override
 	public void save(Teach theTeach) {
-		enrollRepository.save(theTeach);
+		teachRepository.save(theTeach);
 	}
 
 	@Override
 	public void deleteById(int theSectionID, int theFacultyID) {
-		enrollRepository.deleteBySectionIDAndFacultyID(theSectionID, theFacultyID);
+		teachRepository.deleteBySectionIDAndFacultyID(theSectionID, theFacultyID);
 	}
 
 	@Override
 	public List<Teach> findAllBySectionID(int theSectionID) {
-		return enrollRepository.findAllBySectionIDEquals(theSectionID);
+		return teachRepository.findAllBySectionIDEquals(theSectionID);
 	}
 
 	@Override
 	public List<Teach> findAllByFacultyID(int theFacultyID) {
-		return enrollRepository.findAllByFacultyIDEquals(theFacultyID);
+		return teachRepository.findAllByFacultyIDEquals(theFacultyID);
 	}
 
 	@Override
 	public void deleteAllBySectionID(int theSectionID) {
-		enrollRepository.deleteAllBySectionID(theSectionID);
+		teachRepository.deleteAllBySectionID(theSectionID);
 	}
 	
 	@Override
 	public void deleteAllByFacultyID(int theFacultyID) {
-		enrollRepository.deleteAllByFacultyID(theFacultyID);
+		teachRepository.deleteAllByFacultyID(theFacultyID);
+	}
+	
+	@Override
+	public List<Section> getSectionsByFacultyID(int theFacultyID) {
+		return sectionRepository.getAllSectionsTeachByFacultyID(theFacultyID);
 	}
 }

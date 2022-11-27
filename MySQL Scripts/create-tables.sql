@@ -5,7 +5,7 @@ USE school_management_system_db;
 
 DROP TABLE IF EXISTS Submission;
 DROP TABLE IF EXISTS Assignment;
-DROP TABLE IF EXISTS Teaching;
+DROP TABLE IF EXISTS Teach;
 DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS Section;
 DROP TABLE IF EXISTS Course;
@@ -83,17 +83,21 @@ CREATE TABLE Teach (
 CREATE TABLE Assignment (
 	assignmentID int NOT NULL AUTO_INCREMENT,
     sectionID int,
-    assignmentFile varchar(255),
+    assignmentGrade int,
+    assignmentName varchar(255),
+    assignmentDescription varchar(255),
 	primary key (assignmentID),
     foreign key (sectionID) references Section(sectionID)
 );
 
 CREATE TABLE Submission (
+	submissionID int NOT NULL AUTO_INCREMENT,
 	studentID int,
     sectionID int,
     assignmentID int,
+    submissionGrade int,
     assignmentSubmission varchar(255),
-    primary key (studentID, sectionID, assignmentID),
+    primary key (submissionID),
     foreign key (studentID) references Student(studentID),
     foreign key (sectionID) references Section(sectionID),
     foreign key (assignmentID) references Assignment(assignmentID)

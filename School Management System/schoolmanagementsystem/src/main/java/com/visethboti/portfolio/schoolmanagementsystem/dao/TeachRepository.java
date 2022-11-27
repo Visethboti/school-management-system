@@ -18,4 +18,7 @@ public interface TeachRepository extends JpaRepository<Teach, Integer> {
 	public void deleteAllByFacultyID(int theFacultyID);
 	
 	public void deleteAllBySectionID(int theSectionID);
+	
+	
+	
 }

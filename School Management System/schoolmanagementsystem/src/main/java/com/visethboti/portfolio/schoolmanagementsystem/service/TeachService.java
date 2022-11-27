@@ -2,6 +2,7 @@ package com.visethboti.portfolio.schoolmanagementsystem.service;
 
 import java.util.List;
 
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Teach;
 
 public interface TeachService {
@@ -14,4 +15,6 @@ public interface TeachService {
 	
 	public void deleteAllBySectionID(int theSectionID);
 	public void deleteAllByFacultyID(int theFacultyID);
+	
+	public List<Section> getSectionsByFacultyID(int theFacultyID);
 }
