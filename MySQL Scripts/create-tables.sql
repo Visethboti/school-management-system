@@ -64,7 +64,7 @@ CREATE TABLE Section (
 CREATE TABLE Enroll (
 	studentID int,
 	sectionID int,
-    enrollDate date,
+    enrollDate datetime,
     enrollGrade char(1),
     primary key (studentID, sectionID),
     foreign key (studentID) references Student(studentID),
@@ -83,7 +83,7 @@ CREATE TABLE Assignment (
 	assignmentID int NOT NULL AUTO_INCREMENT,
     sectionID int,
     assignmentFile varchar(255),
-     primary key (assignmentID),
+	primary key (assignmentID),
     foreign key (sectionID) references Section(sectionID)
 );
 
