@@ -7,12 +7,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Enroll Student</title>
+    <title>Assign Faculty</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<span class="navbar-brand mb-0 h1">Enroll Student</span>
+	<span class="navbar-brand mb-0 h1">Assign Faculty</span>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home <span class="sr-only">(current)</span></a>
@@ -58,7 +58,7 @@
 	    		<hr class="col-md-8 offset-md-2">
 	    		
 	    		<div class="col-md-8 offset-md-2">
-	    			<p  class="h4 mb-2">Student Directory</p>
+	    			<p  class="h4 mb-2">Faculty Directory</p>
 	    		</div>
 	    		
     			<table class="table table-bordered table-striped">
@@ -84,8 +84,8 @@
 	    				<td th:text="${tempUser.sex}"/>
 	    				<td th:text="${tempUser.enabled}"/>
 	    				<td>
-	    					<a th:href="@{/adminhome/coursedirectory/sections/management/saveenroll(userID=${tempUser.userID},sectionID=${section.sectionID})}" class="btn btn-info btn-sm">
-	    						Enroll Student
+	    					<a th:href="@{/adminhome/coursedirectory/sections/management/saveteach(userID=${tempUser.userID},sectionID=${section.sectionID})}" class="btn btn-info btn-sm">
+	    						Assign Faculty
 	    					</a>
 	    				</td>
 	    			</tr>

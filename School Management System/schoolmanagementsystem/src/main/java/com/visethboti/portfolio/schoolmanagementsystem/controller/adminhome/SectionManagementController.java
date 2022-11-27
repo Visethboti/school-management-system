@@ -15,45 +15,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Course;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Enroll;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Teach;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 import com.visethboti.portfolio.schoolmanagementsystem.service.CourseService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.EnrollService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.TeachService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
-@RequestMapping(value={"/adminhome/coursedirectory/sections/enrollments"})
-public class EnrollController {
+@RequestMapping(value={"/adminhome/coursedirectory/sections/management"})
+public class SectionManagementController {
 	private SectionService sectionService;
 	private UserService userService;
 	private EnrollService enrollService;
 	private CourseService courseService;
+	private TeachService teachService;
 	
 	@Autowired
-	public EnrollController(@Qualifier("sectionServiceImpl") SectionService theSectionService, 
+	public SectionManagementController(@Qualifier("sectionServiceImpl") SectionService theSectionService, 
 			@Qualifier("userServiceImpl") UserService theUserService,
 			@Qualifier("enrollServiceImpl") EnrollService theEnrollService,
-			@Qualifier("courseServiceImpl") CourseService theCourseService) {
+			@Qualifier("courseServiceImpl") CourseService theCourseService,
+			@Qualifier("teachServiceImpl") TeachService theTeachService) {
 		sectionService = theSectionService;
 		userService = theUserService;
 		enrollService = theEnrollService;
 		courseService = theCourseService;
+		teachService = theTeachService;
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listSections(@RequestParam("sectionID") int theSectionID, Model theModel) {
-		// get all Sections for this course
+	public String listSections(@RequestParam("sectionID") int theSectionID, @RequestParam("courseID") int theCourseID, Model theModel) {
 		List<Enroll> enrolls = enrollService.findAllBySectionID(theSectionID);
+		List<Teach> teachs = teachService.findAllBySectionID(theSectionID);
 		
 		// add to the Spring MVC model
 		theModel.addAttribute("enrolls", enrolls);
+		theModel.addAttribute("teachs", teachs);
 		theModel.addAttribute("sectionID", theSectionID);
+		theModel.addAttribute("courseID", theCourseID);
 		
-		return "/admin-home/enroll-list";
+		return "/admin-home/section-management";
 	}
 	
 	@GetMapping("/enrollstudent")
-	public String showFormForAdd(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String enrollstudent(@RequestParam("sectionID") int theSectionID, Model theModel) {
 		// create model attribute to bind form data
 		
 		Enroll theEnroll = new Enroll();
@@ -69,8 +76,8 @@ public class EnrollController {
 		return "/admin-home/enroll-student";
 	}
 	
-	@GetMapping("/save")
-	public String saveSection(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID, Model theModel) {
+	@GetMapping("/saveenroll")
+	public String saveStudent(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID) {
 		Date now = new Date();
 		Timestamp timestamp = new Timestamp(now.getTime());
 		
@@ -80,10 +87,10 @@ public class EnrollController {
 		enrollService.save(theEnroll);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/enrollments?sectionID="+theEnroll.getSectionID();
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theEnroll.getSectionID();
 	}
 	
-	@GetMapping("/update")
+	@GetMapping("/updateenroll")
 	public String showUpdateForm(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID, Model theModel) {
 		Enroll theEnroll = enrollService.findById(theSectionID, theStudentID);
 		theModel.addAttribute("section", sectionService.findById(theSectionID));
@@ -91,9 +98,46 @@ public class EnrollController {
 		return "/admin-home/update-section";
 	}
 	
-	@GetMapping("/delete")
-	public String updateSection(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID) {
+	@GetMapping("/deleteenroll")
+	public String deleteEnroll(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theStudentID) {
 		enrollService.deleteById(theSectionID, theStudentID);
-		return "redirect:/adminhome/coursedirectory/sections/enrollments?sectionID="+theSectionID;
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID;
+	}
+	
+	@GetMapping("/assignfaculty")
+	public String assignfaculty(@RequestParam("sectionID") int theSectionID, Model theModel) {
+		// create model attribute to bind form data
+		
+		Teach theTeach = new Teach();
+		Section theSection = sectionService.findById(theSectionID);
+		List<User> theFaculties = userService.findAllFaculty();
+		Course theCourse = courseService.findById(theSection.getCourseID());
+			
+		theModel.addAttribute("teach", theTeach);
+		theModel.addAttribute("section", theSection);
+		theModel.addAttribute("users", theFaculties);
+		theModel.addAttribute("course", theCourse);
+		
+		return "/admin-home/assign-faculty";
+	}
+	
+	@GetMapping("/saveteach")
+	public String saveFaculty(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theFacultyID) {
+		Date now = new Date();
+		Timestamp timestamp = new Timestamp(now.getTime());
+		
+		Teach theTeach = new Teach(theFacultyID,theSectionID, timestamp.toString());
+		
+		// save Section
+		teachService.save(theTeach);
+		
+		// use a redirect to prevent duplicate submissions
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theTeach.getSectionID();
+	}
+	
+	@GetMapping("/deleteteach")
+	public String deleteTeach(@RequestParam("sectionID") int theSectionID, @RequestParam("userID") int theFacultyID) {
+		teachService.deleteById(theSectionID, theFacultyID);
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID;
 	}
 }

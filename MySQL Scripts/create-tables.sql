@@ -71,9 +71,10 @@ CREATE TABLE Enroll (
     foreign key (sectionID) references Section(sectionID)
 );
 
-CREATE TABLE Teaching (
+CREATE TABLE Teach (
 	facultyID int,
 	sectionID int,
+    assignedDate datetime,
     primary key (facultyID, sectionID),
     foreign key (facultyID) references Faculty(facultyID),
     foreign key (sectionID) references Section(sectionID)
