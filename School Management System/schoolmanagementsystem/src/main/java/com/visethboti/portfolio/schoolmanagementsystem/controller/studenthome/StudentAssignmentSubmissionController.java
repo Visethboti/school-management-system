@@ -79,7 +79,6 @@ public class StudentAssignmentSubmissionController {
 		Date now = new Date();
 		Timestamp timestamp = new Timestamp(now.getTime());
 		submission.setSubmissionDate(timestamp.toString());
-		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&" + submission.toString());
 		submissionService.save(submission);
 		
 		return "redirect:/studenthome/sectioncontent/submissions?assignmentID="+theAssignmentID;

@@ -16,7 +16,9 @@
 	<span class="navbar-brand mb-0 h1" th:text="'Section '+${section.sectionID}"></span>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
-
+			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/facultyhome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/facultyhome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Class List<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -37,28 +39,38 @@
 		    		</thead>
 		    		<tbody>
 		    			<tr th:each="tempSubmissionList: ${submissions}">
-		    				<td th:text="${tempSubmissionList[0].studentID}" class="h5"></td>
+		    				<td>
+		    					<span th:if="${tempSubmissionList!=null and !tempSubmissionList.empty}" th:text="${tempSubmissionList[0].studentID}" class="h4"></span>
+		    					<span th:if="${!(tempSubmissionList!=null and !tempSubmissionList.empty)}" class="h4">Empty Submission List</span>
+		    				</td>
 		    				<td>
 			    				<table class="table table-bordered table-striped" >
 						    		<thead class="thead-dark">
-						    			
 						    			<tr>
 						    				<th>Submission ID</th>
 						    				<th>Submission Text</th>
-						    				<th>Submission Grade</th>
 						    				<th>Submission Date</th>
-						    				<th>Action</th>
+						    				<th>Submission Grade</th>	
 						    			</tr>
 						    		</thead>
 						    		<tbody>
 						    			<tr th:each="tempSubmission: ${tempSubmissionList}">
 						    				<td th:text="${tempSubmission.submissionID}"/>
 			    							<td th:text="${tempSubmission.submissionText}"/>
-			    							<td th:text="${tempSubmission.submissionGrade}"/>
 			    							<td th:text="${tempSubmission.submissionDate}"/>
-						    				<td>
-						    					
-						    				</td>
+			    							<td>
+			    									<form action="#" th:action="@{/facultyhome/sectioncontent/submissions/addgrade(assignmentID=${tempSubmission.assignmentID})}"
+							    						 th:object="${tempSubmission}" method="POST">
+							    						<input type="text" th:value="*{submissionGrade}"name="submissionGrade" id="submissionGrade" required>
+							    						<input type="hidden" th:value="*{submissionID}"name="submissionID" id="submissionID">
+							    						<input type="hidden" th:value="*{studentID}"name="studentID" id="studentID"> 
+							    						<input type="hidden" th:value="*{assignmentID}"name="assignmentID" id="assignmentID"> 
+							    						<input type="hidden" th:value="*{submissionText}"name="submissionText" id="submissionText"> 
+							    						<input type="hidden" th:value="*{submissionDate}"name="submissionDate" id="submissionDate"> 
+							    						<button type="submit"class="btn btn-secondary btn-sm">Save</button> 
+							    					</form>
+			    							</td>
+			    							
 						    			</tr>
 						    		</tbody>
 						    	</table>
