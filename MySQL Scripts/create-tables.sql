@@ -30,19 +30,19 @@ CREATE TABLE User (
 CREATE TABLE Admin (
     adminID int,
     primary key (adminID),
-    foreign key (adminID) references User(userID)
+    foreign key (adminID) references User(userID) on delete cascade
 );
 
 CREATE TABLE Faculty (
     facultyID int,
     primary key (facultyID),
-    foreign key (facultyID) references User(userID)
+    foreign key (facultyID) references User(userID) on delete cascade
 );
 
 CREATE TABLE Student (
     studentID int,
     primary key (studentID),
-    foreign key (studentID) references User(userID)
+    foreign key (studentID) references User(userID) on delete cascade
 );
 
 CREATE TABLE Course (
@@ -58,7 +58,7 @@ CREATE TABLE Section (
     courseID int,
     academicYear int,
     primary key (sectionID),
-    foreign key (courseID) references Course(courseID)
+    foreign key (courseID) references Course(courseID) on delete cascade
 );
 
 CREATE TABLE Enroll (
@@ -67,8 +67,8 @@ CREATE TABLE Enroll (
     enrollDate datetime,
     enrollGrade char(1),
     primary key (studentID, sectionID),
-    foreign key (studentID) references Student(studentID),
-    foreign key (sectionID) references Section(sectionID)
+    foreign key (studentID) references Student(studentID) on delete cascade,
+    foreign key (sectionID) references Section(sectionID) on delete cascade
 );
 
 CREATE TABLE Teach (
@@ -76,8 +76,8 @@ CREATE TABLE Teach (
 	sectionID int,
     assignedDate datetime,
     primary key (facultyID, sectionID),
-    foreign key (facultyID) references Faculty(facultyID),
-    foreign key (sectionID) references Section(sectionID)
+    foreign key (facultyID) references Faculty(facultyID) on delete cascade,
+    foreign key (sectionID) references Section(sectionID) on delete cascade
 );
 
 CREATE TABLE Assignment (
@@ -87,7 +87,16 @@ CREATE TABLE Assignment (
     assignmentName varchar(255),
     assignmentDescription varchar(255),
 	primary key (assignmentID),
-    foreign key (sectionID) references Section(sectionID)
+    foreign key (sectionID) references Section(sectionID) on delete cascade
+);
+
+CREATE TABLE AssignmentStudentGrade (
+	assignmentID int,
+    studentID int,
+    assignmentStudentGrade int,
+	primary key (assignmentID, studentID),
+    foreign key (assignmentID) references Assignment(assignmentID) on delete cascade,
+    foreign key (studentID) references Enroll(studentID) on delete cascade
 );
 
 CREATE TABLE Submission (
@@ -98,6 +107,6 @@ CREATE TABLE Submission (
     submissionText varchar(255),
     submissionDate datetime,
     primary key (submissionID),
-    foreign key (studentID) references Student(studentID),
-    foreign key (assignmentID) references Assignment(assignmentID)
+    foreign key (studentID) references Student(studentID) on delete cascade,
+    foreign key (assignmentID) references Assignment(assignmentID) on delete cascade
 );
