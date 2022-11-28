@@ -1,6 +1,6 @@
 CREATE USER 'schoolmanagementsystem'@'localhost' IDENTIFIED BY 'schoolmanagementsystem';
 
-GRANT ALL PRIVILEGES ON * . * TO 'schoolmanagementsystem'@'schoolmanagementsystem';
+GRANT ALL PRIVILEGES ON * . * TO 'schoolmanagementsystem'@'localhost';
 
 #
 # Starting with MySQL 8.0.4, the MySQL team changed the 
@@ -12,4 +12,4 @@ GRANT ALL PRIVILEGES ON * . * TO 'schoolmanagementsystem'@'schoolmanagementsyste
 # See the MySQL Reference Manual for details: 
 # https://dev.mysql.com/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html
 #
-ALTER USER 'schoolmanagementsystem'@'schoolmanagementsystem' IDENTIFIED WITH mysql_native_password BY 'schoolmanagementsystem2022'; #this is for changing password to "hbstudent"
+ALTER USER 'schoolmanagementsystem'@'localhost' IDENTIFIED WITH mysql_native_password BY 'schoolmanagementsystem2022'; 
