@@ -32,34 +32,37 @@
 		    		<thead class="thead-dark">
 		    			<tr>
 		    				<th>Student ID</th>
+		    				<th>Submissions</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
 		    			<tr th:each="tempSubmissionList: ${submissions}">
-		    				<table class="table table-bordered table-striped">
-		    					
-					    		<thead class="thead-dark">
-					    			<tr><td th:text="${tempSubmissionList[0].studentID}"></td></tr>
-					    			<tr>
-					    				<th>Submission ID</th>
-					    				<th>Submission Text</th>
-					    				<th>Submission Grade</th>
-					    				<th>Submission Date</th>
-					    				<th>Action</th>
-					    			</tr>
-					    		</thead>
-					    		<tbody>
-					    			<tr th:each="tempSubmission: ${tempSubmissionList}">
-					    				<td th:text="${tempSubmission.submissionID}"/>
-		    							<td th:text="${tempSubmission.submissionText}"/>
-		    							<td th:text="${tempSubmission.submissionGrade}"/>
-		    							<td th:text="${tempSubmission.submissionDate}"/>
-					    				<td>
-					    					
-					    				</td>
-					    			</tr>
-					    		</tbody>
-					    	</table>
+		    				<td th:text="${tempSubmissionList[0].studentID}" class="h5"></td>
+		    				<td>
+			    				<table class="table table-bordered table-striped" >
+						    		<thead class="thead-dark">
+						    			
+						    			<tr>
+						    				<th>Submission ID</th>
+						    				<th>Submission Text</th>
+						    				<th>Submission Grade</th>
+						    				<th>Submission Date</th>
+						    				<th>Action</th>
+						    			</tr>
+						    		</thead>
+						    		<tbody>
+						    			<tr th:each="tempSubmission: ${tempSubmissionList}">
+						    				<td th:text="${tempSubmission.submissionID}"/>
+			    							<td th:text="${tempSubmission.submissionText}"/>
+			    							<td th:text="${tempSubmission.submissionGrade}"/>
+			    							<td th:text="${tempSubmission.submissionDate}"/>
+						    				<td>
+						    					
+						    				</td>
+						    			</tr>
+						    		</tbody>
+						    	</table>
+		    				</td>
 		    			</tr>
 		    		</tbody>
 		    	</table>
