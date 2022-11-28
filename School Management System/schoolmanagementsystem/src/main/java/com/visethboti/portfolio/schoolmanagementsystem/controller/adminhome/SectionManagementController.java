@@ -65,7 +65,7 @@ public class SectionManagementController {
 		
 		Enroll theEnroll = new Enroll();
 		Section theSection = sectionService.findById(theSectionID);
-		List<User> theStudents = userService.findAllStudent();
+		List<User> theStudents = userService.findAllStudentNotEnrollInSection(theSectionID);
 		Course theCourse = courseService.findById(theSection.getCourseID());
 			
 		theModel.addAttribute("enroll", theEnroll);
@@ -114,7 +114,7 @@ public class SectionManagementController {
 		
 		Teach theTeach = new Teach();
 		Section theSection = sectionService.findById(theSectionID);
-		List<User> theFaculties = userService.findAllFaculty();
+		List<User> theFaculties = userService.findAllFacultyNotAssignInSection(theSectionID);
 		Course theCourse = courseService.findById(theSection.getCourseID());
 			
 		theModel.addAttribute("teach", theTeach);

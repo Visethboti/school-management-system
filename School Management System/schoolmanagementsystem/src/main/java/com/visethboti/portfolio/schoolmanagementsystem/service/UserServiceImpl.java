@@ -147,5 +147,13 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByRoleEquals("ROLE_ADMIN");
 	}
 	
+	@Override
+	public List<User> findAllStudentNotEnrollInSection(int theSectionID) {
+		return userRepository.getAllStudentNotEnrollBySectionID(theSectionID);
+	}
 	
+	@Override
+	public List<User> findAllFacultyNotAssignInSection(int theSectionID) {
+		return userRepository.getAllFacultyNotAssignBySectionID(theSectionID);
+	}
 }

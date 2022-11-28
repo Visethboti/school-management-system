@@ -13,4 +13,7 @@ public interface UserService {
 	public List<User> findAllStudent();
 	public List<User> findAllFaculty();
 	public List<User> findAllAdmin();
+	
+	public List<User> findAllStudentNotEnrollInSection(int theSectionID);
+	public List<User> findAllFacultyNotAssignInSection(int theSectionID);
 }
