@@ -54,12 +54,12 @@ public class TeachServiceImpl implements TeachService {
 
 	@Override
 	public void deleteAllBySectionID(int theSectionID) {
-		teachRepository.deleteAllBySectionID(theSectionID);
+		teachRepository.deleteAllBySectionIDEquals(theSectionID);
 	}
 	
 	@Override
 	public void deleteAllByFacultyID(int theFacultyID) {
-		teachRepository.deleteAllByFacultyID(theFacultyID);
+		teachRepository.deleteAllByFacultyIDEquals(theFacultyID);
 	}
 	
 	@Override

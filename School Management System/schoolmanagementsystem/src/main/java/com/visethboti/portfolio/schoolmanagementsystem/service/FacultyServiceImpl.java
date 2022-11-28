@@ -15,9 +15,13 @@ public class FacultyServiceImpl implements FacultyService {
 	
 	private FacultyRepository facultyRepository;
 	
+	private TeachService teachService;
+	
 	@Autowired
-	public FacultyServiceImpl(FacultyRepository theFacultyRepository) {
+	public FacultyServiceImpl(FacultyRepository theFacultyRepository,
+			TeachService teachService) {
 		this.facultyRepository = theFacultyRepository;
+		this.teachService = teachService;
 	}
 	
 	@Override
@@ -49,6 +53,8 @@ public class FacultyServiceImpl implements FacultyService {
 	@Override
 	public void deleteById(int theFacultyID) {
 		facultyRepository.deleteById(theFacultyID);
+		
+		teachService.deleteAllByFacultyID(theFacultyID);
 	}
 
 }

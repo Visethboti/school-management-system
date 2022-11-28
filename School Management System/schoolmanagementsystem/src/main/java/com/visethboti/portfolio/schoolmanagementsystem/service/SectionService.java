@@ -10,4 +10,6 @@ public interface SectionService {
 	public void save(Section theSection);
 	public void deleteById(int theSectionID);
 	public List<Section> findAllByCourseID(int theCourseID);
+	
+	public void deleteAllByCourseIDEquals(int theCourseID);
 }

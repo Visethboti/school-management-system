@@ -95,4 +95,9 @@ public class SubmissionServiceImpl implements SubmissionService {
 		
 		return listOfStudentSubmission;
 	}
+	
+	@Override
+	public void deleteAllByStudentID(int theStudentID) {
+		submissionRepository.deleteAllByStudentIDEquals(theStudentID);
+	}
 }

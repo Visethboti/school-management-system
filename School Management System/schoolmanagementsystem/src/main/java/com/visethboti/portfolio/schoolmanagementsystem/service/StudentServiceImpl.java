@@ -14,10 +14,16 @@ public class StudentServiceImpl implements StudentService {
 
 	
 	private StudentRepository studentRepository;
+	private EnrollService enrollService;
+	private SubmissionService submissionService;
 	
 	@Autowired
-	public StudentServiceImpl(StudentRepository theStudentRepository) {
+	public StudentServiceImpl(StudentRepository theStudentRepository, 
+			EnrollService enrollService, 
+			SubmissionService submissionService) {
 		this.studentRepository = theStudentRepository;
+		this.enrollService = enrollService;
+		this.submissionService = submissionService;
 	}
 	
 	@Override
@@ -48,6 +54,12 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void deleteById(int theStudentID) {
+		// delete from referenced table
+		submissionService.deleteAllByStudentID(theStudentID);
+		enrollService.deleteAllByStudentID(theStudentID);
+		
+		
+		
 		studentRepository.deleteById(theStudentID);
 	}
 

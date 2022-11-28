@@ -15,4 +15,6 @@ public interface SectionRepository extends JpaRepository<Section, Integer> {
 	
 	@Query(nativeQuery=true, value="select * from Section where Section.sectionID in (select Enroll.sectionID from Enroll where Enroll.studentID = ?1)") 
 	public List<Section> getAllSectionsEnrollByStudentID(int theStudentID);
+	
+	public void deleteAllByCourseIDEquals(int theCourseID);
 }

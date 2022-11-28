@@ -55,4 +55,9 @@ public class SectionServiceImpl implements SectionService {
 	public List<Section> findAllByCourseID(int theCourseID) {
 		return sectionRepository.findAllByCourseIDEquals(theCourseID);
 	}
+	
+	@Override
+	public void deleteAllByCourseIDEquals(int theCourseID) {
+		sectionRepository.deleteAllByCourseIDEquals(theCourseID);
+	}
 }

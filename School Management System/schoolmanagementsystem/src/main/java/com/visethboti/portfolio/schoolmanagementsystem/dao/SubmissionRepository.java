@@ -9,4 +9,6 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 public interface SubmissionRepository extends JpaRepository<Submission, Integer> {
 	public List<Submission> findAllByAssignmentIDAndStudentID(int theAssignmentID, int theStudentID);
 	public List<Submission> findAllByAssignmentID(int theAssignmentID);
+	
+	public void deleteAllByStudentIDEquals(int theStudentID);
 }

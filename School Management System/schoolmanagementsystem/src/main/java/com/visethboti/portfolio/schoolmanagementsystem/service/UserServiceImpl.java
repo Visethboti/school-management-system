@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.visethboti.portfolio.schoolmanagementsystem.dao.AdminRepository;
-import com.visethboti.portfolio.schoolmanagementsystem.dao.FacultyRepository;
-import com.visethboti.portfolio.schoolmanagementsystem.dao.StudentRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.dao.UserRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Admin;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Faculty;
@@ -22,23 +19,23 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
-	private StudentRepository studentRepository;
-	private FacultyRepository facultyRepository;
-	private AdminRepository adminRepository;
+	private StudentService studentService;
+	private FacultyService facultyService;
+	private AdminService adminService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public UserServiceImpl(UserRepository theUserRepository, 
-			StudentRepository theStudentRepository, 
-			FacultyRepository theFacultyRepository, 
-			AdminRepository theAdminRepository) {
+			StudentService theStudentService, 
+			FacultyService theFacultyService, 
+			AdminService theAdminService) {
 		
 		this.userRepository = theUserRepository;
-		this.adminRepository = theAdminRepository;
-		this.studentRepository = theStudentRepository;
-		this.facultyRepository = theFacultyRepository;
+		this.adminService = theAdminService;
+		this.studentService = theStudentService;
+		this.facultyService = theFacultyService;
 	}
 	
 	@PostConstruct
@@ -59,19 +56,19 @@ public class UserServiceImpl implements UserService {
 		password = passwordEncoder.encode(password);
 		User theUser = new User(1, password, "Tester Admin", "User", "admin address", 20, 'M', 1, "ROLE_ADMIN");
 		userRepository.save(theUser);
-		adminRepository.save(new Admin(theUser.getUserID()));
+		adminService.save(new Admin(theUser.getUserID()));
 		
 		password = "12345";
 		password = passwordEncoder.encode(password);
 		theUser = new User(2, password, "Tester Faculty", "User", "faculty address", 22, 'F', 1, "ROLE_FACULTY");
 		userRepository.save(theUser);
-		facultyRepository.save(new Faculty(theUser.getUserID()));
+		facultyService.save(new Faculty(theUser.getUserID()));
 		
 		password = "12345";
 		password = passwordEncoder.encode(password);
 		theUser = new User(3, password, "Tester Student", "User", "student address", 24, 'M', 1, "ROLE_STUDENT");
 		userRepository.save(theUser);
-		studentRepository.save(new Student(theUser.getUserID()));
+		studentService.save(new Student(theUser.getUserID()));
 	}
 	
 	@Override
@@ -119,13 +116,13 @@ public class UserServiceImpl implements UserService {
 		
 		String userrole = theUser.getRole();
 		if(userrole.equals("ROLE_STUDENT")) {
-			studentRepository.save(new Student(theUserID));
+			studentService.save(new Student(theUserID));
 		}
 		else if(userrole.equals("ROLE_ADMIN")) {
-			adminRepository.save(new Admin(theUserID));
+			adminService.save(new Admin(theUserID));
 		}
 		else if(userrole.equals("ROLE_FACULTY")) {
-			facultyRepository.save(new Faculty(theUserID));
+			facultyService.save(new Faculty(theUserID));
 		}
 	}
 
@@ -135,11 +132,11 @@ public class UserServiceImpl implements UserService {
 		if(result.isPresent()) {
 			String userrole = result.get().getRole();
 			if(userrole.equals("ROLE_STUDENT"))
-				studentRepository.deleteById(theUserID);
+				studentService.deleteById(theUserID);
 			else if(userrole.equals("ROLE_ADMIN"))
-				adminRepository.deleteById(theUserID);
+				adminService.deleteById(theUserID);
 			else if(userrole.equals("ROLE_FACULTY"))
-				facultyRepository.deleteById(theUserID);
+				facultyService.deleteById(theUserID);
 			
 			
 			userRepository.deleteById(theUserID);
