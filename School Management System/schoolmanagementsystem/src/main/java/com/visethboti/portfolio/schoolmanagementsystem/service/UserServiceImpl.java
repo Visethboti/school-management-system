@@ -128,19 +128,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteById(int theUserID) {
-		Optional<User> result = userRepository.findById(theUserID);
-		if(result.isPresent()) {
-			String userrole = result.get().getRole();
-			if(userrole.equals("ROLE_STUDENT"))
-				studentService.deleteById(theUserID);
-			else if(userrole.equals("ROLE_ADMIN"))
-				adminService.deleteById(theUserID);
-			else if(userrole.equals("ROLE_FACULTY"))
-				facultyService.deleteById(theUserID);
-			
-			
-			userRepository.deleteById(theUserID);
-		}
+		userRepository.deleteById(theUserID);
 	}
 	
 

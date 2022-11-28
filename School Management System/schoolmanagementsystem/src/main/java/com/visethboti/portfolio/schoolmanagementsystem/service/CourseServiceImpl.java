@@ -15,13 +15,9 @@ public class CourseServiceImpl implements CourseService {
 	
 	private CourseRepository courseRepository;
 	
-	private SectionService sectionService;
-	
 	@Autowired
-	public CourseServiceImpl(CourseRepository theCourseRepository,
-			SectionService sectionService) {
+	public CourseServiceImpl(CourseRepository theCourseRepository) {
 		this.courseRepository = theCourseRepository;
-		this.sectionService = sectionService;
 	}
 	
 	@Override
@@ -53,8 +49,6 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void deleteById(int theCourseID) {
 		courseRepository.deleteById(theCourseID);
-		
-		sectionService.deleteAllByCourseIDEquals(theCourseID);
 	}
 
 }
