@@ -161,4 +161,6 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllAdmin() {
 		return userRepository.findByRoleEquals("ROLE_ADMIN");
 	}
+	
+	
 }

@@ -7,70 +7,45 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.SubmissionService;
 
 @Controller
-@RequestMapping("/facultyhome/sectioncontent")
+@RequestMapping("/facultyhome/sectioncontent/submissions")
 public class FacultyAssignmentSubmissionController {
 	
 	private SectionService sectionService;
 	private AssignmentService assignmentService;
+	private SubmissionService submissionService;
 	
 	@Autowired
 	public FacultyAssignmentSubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
-											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService) {
+											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
+											@Qualifier("submissionServiceImpl") SubmissionService submissionService) {
 		this.sectionService = sectionService;
 		this.assignmentService = assignmentService;
+		this.submissionService = submissionService;
 	}
 	
 	@GetMapping("")
-	public String showSectionContent(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String showSectionContent(@RequestParam("assignmentID") int theAssignmentID, Model theModel) {
 		
-		Section section = sectionService.findById(theSectionID);
-		List<Assignment> assignments = assignmentService.findAllBySectionID(theSectionID);	
+		Assignment assignment = assignmentService.findById(theAssignmentID);	
+		Section section = sectionService.findById(assignment.getSectionID());
+		List<List<Submission>> submissionlist = submissionService.GetListofStudentSubmissions(theAssignmentID);
 		
+		theModel.addAttribute("assignments", assignment);
 		theModel.addAttribute("section", section);
-		theModel.addAttribute("assignments", assignments);
+		theModel.addAttribute("submissions", submissionlist);
 		
-		return "/faculty-home/faculty-section-content";
-	}
-	
-	@GetMapping("/addassignment")
-	public String showAddAssignment(@RequestParam("sectionID") int theSectionID, Model theModel) {
-		
-		Section section = sectionService.findById(theSectionID);
-		Assignment assignment = new Assignment();
-		
-		theModel.addAttribute("section", section);
-		theModel.addAttribute("assignment", assignment);
-		
-		return "/faculty-home/add-assignment";
-	}
-	
-	@PostMapping("/saveassignment")
-	public String saveAssignment(@ModelAttribute("Assignment") Assignment assignment,
-			@RequestParam("sectionID") int theSectionID) {
-		
-		assignmentService.save(assignment);
-		
-		return "redirect:/facultyhome/sectioncontent?sectionID="+theSectionID;
-	}
-	
-	@GetMapping("/deleteassignment")
-	public String deleteAssignment(@RequestParam("assignmentID") int theAssignmentID,
-			@RequestParam("sectionID") int theSectionID) {
-		
-		assignmentService.deleteById(theAssignmentID);
-		
-		return "redirect:/facultyhome/sectioncontent?sectionID="+theSectionID;
+		return "/faculty-home/assignment-student-submissions";
 	}
 	
 	/*

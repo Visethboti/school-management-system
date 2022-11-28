@@ -12,4 +12,7 @@ public interface SectionRepository extends JpaRepository<Section, Integer> {
 	
 	@Query(nativeQuery=true, value="select * from Section where Section.sectionID in (select Teach.sectionID from Teach where Teach.facultyID = ?1)") // ?1 is the 1st parameter, theFacultyID
 	public List<Section> getAllSectionsTeachByFacultyID(int theFacultyID);
+	
+	@Query(nativeQuery=true, value="select * from Section where Section.sectionID in (select Enroll.sectionID from Enroll where Enroll.studentID = ?1)") 
+	public List<Section> getAllSectionsEnrollByStudentID(int theStudentID);
 }

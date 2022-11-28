@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Faculty Home Page</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<span class="navbar-brand mb-0 h1" th:text="'Course '+${section.courseID}"></span>
+	<span class="navbar-brand mb-0 h1" th:text="'Section '+${section.sectionID}"></span>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/studenthome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
+			<a th:href="@{/studenthome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Class List<span class="sr-only">(current)</span></a>
+		</div>
+	</div>
+	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
+  </nav>
+  <body>
+    <main>
+    	<div class="container">
+    		<div class = row style="margin-top: 50px;">
+    			<label class="form-check-label" for="assignmentname">Assignment Name</label>
+	    		<input type="text" th:field="${assignment.assignmentName}" class="form-control mb-2" placeholder="Assignment Name" readonly="readonly"> 
+	    			
+	    		<label class="form-check-label" for="assignmentDescription">Assignment Description</label>
+	    		<input type="text" th:field="${assignment.assignmentDescription}" class="form-control mb-2" placeholder="Assignment Description" readonly="readonly">  
+	    			
+	    		<label class="form-check-label" for="assignmentGrade">Assignment Grade</label>
+	    		<input type="number" th:field="${assignment.assignmentGrade}" class="form-control mb-2" placeholder="Desc" min="0" max="999" readonly="readonly">  
+    			
+    			<hr class="col-md-8 offset-md-2">
+    			
+    			<a th:href="@{/studenthome/sectioncontent/submissions/addsubmission(assignmentID=${assignment.assignmentID})}" 
+	    		class="btn btn-primary btn-lg btn-dark mb-2">Add New Submission</a>
+    			<div class="col-md-8 offset-md-4">
+		    		<p  class="h4 mb-2">List of Submissions</p>
+		    	</div>
+    			
+		    	
+	    		<table class="table table-bordered table-striped">
+		    		<thead class="thead-dark">
+		    			<tr>
+		    				<th>Submission ID</th>
+		    				<th>Submission Text</th>
+		    				<th>Submission Grade</th>
+		    				<th>Submission Date</th>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr th:each="tempSubmission: ${submissions}">
+		    				<td th:text="${tempSubmission.submissionID}"/>
+		    				<td th:text="${tempSubmission.submissionText}"/>
+		    				<td th:text="${tempSubmission.submissionGrade}"/>
+		    				<td th:text="${tempSubmission.submissionDate}"/>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+    		</div>
+    	</div>
+    </main>
+  </body>
+</html>

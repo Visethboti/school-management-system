@@ -93,12 +93,11 @@ CREATE TABLE Assignment (
 CREATE TABLE Submission (
 	submissionID int NOT NULL AUTO_INCREMENT,
 	studentID int,
-    sectionID int,
     assignmentID int,
     submissionGrade int,
-    assignmentSubmission varchar(255),
+    submissionText varchar(255),
+    submissionDate datetime,
     primary key (submissionID),
     foreign key (studentID) references Student(studentID),
-    foreign key (sectionID) references Section(sectionID),
     foreign key (assignmentID) references Assignment(assignmentID)
 );

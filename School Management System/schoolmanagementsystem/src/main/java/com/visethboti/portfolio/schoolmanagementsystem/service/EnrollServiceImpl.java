@@ -6,16 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.visethboti.portfolio.schoolmanagementsystem.dao.EnrollRepository;
+import com.visethboti.portfolio.schoolmanagementsystem.dao.SectionRepository;
+import com.visethboti.portfolio.schoolmanagementsystem.dao.UserRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Enroll;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 
 @Service
 public class EnrollServiceImpl implements EnrollService {
 
 	private EnrollRepository enrollRepository;
+	private SectionRepository sectionRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
-	public EnrollServiceImpl(EnrollRepository theEnrollRepository) {
+	public EnrollServiceImpl(EnrollRepository theEnrollRepository, SectionRepository sectionRepository, UserRepository userRepository) {
 		this.enrollRepository = theEnrollRepository;
+		this.sectionRepository = sectionRepository;
+		this.userRepository = userRepository;
 	}
 	
 	@Override
@@ -56,5 +64,15 @@ public class EnrollServiceImpl implements EnrollService {
 	@Override
 	public void deleteAllByStudentID(int theStudentID) {
 		enrollRepository.deleteAllByStudentID(theStudentID);
+	}
+	
+	@Override
+	public List<Section> getSectionsByStudentID(int theStudentID) {
+		return sectionRepository.getAllSectionsEnrollByStudentID(theStudentID);
+	}
+	
+	@Override
+	public List<User> getStudentsEnrollBySectionID(int theSectionID) {
+		return userRepository.getAllStudentsEnrollBySectionID(theSectionID);
 	}
 }
