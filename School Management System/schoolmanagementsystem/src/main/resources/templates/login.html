@@ -17,18 +17,18 @@
 
 </head>
 
-<body>
+<body style="background: #f0f0f0;">
 
-	<div class="container">
+	<div class="container" >
 		<div id="loginbox" style="margin-top: 100px;"
 			class="col-sm-6 col-sm-offset-3">
-			<div class="panel panel-info">
+			<div class="panel panel-info" style="border-color: #000">
 
-				<div class="panel-heading">
-					<div class="panel-title">Sign In: JDBC Authentication</div>
+				<div class="panel-heading" style="background: #212529; color: #fff; border-color: #000">
+					<div class="panel-title">Sign In</div>
 				</div>
 
-				<div style="padding-top: 30px" class="panel-body">
+				<div style="padding-top: 30px" class="panel-body" >
 
 					<!-- Login Form -->
 					<form th:action="@{/authenticateTheUser}" 
@@ -80,7 +80,7 @@
 						<!-- Login/Submit Button -->
 						<div style="margin-top: 10px" class="form-group">						
 							<div class="col-sm-6 controls">
-								<button type="submit" class="btn btn-primary btn-lg btn-dark">Login</button>
+								<button type="submit" class="btn btn-dark btn-lg mb-2" style="background: #212529; color: #fff; border-color: #000">Login</button>
 							</div>
 						</div>
 						
