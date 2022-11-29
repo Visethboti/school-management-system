@@ -34,11 +34,11 @@ public class FacultyHomeController {
 		return "/faculty-home/faculty-home";
 	}
 	
-	/*
+	
 	@GetMapping(value={"/**"})
 	public String redirectToHomePage() {
 		
 		return "redirect:/";
 	}
-	*/
+	
 }

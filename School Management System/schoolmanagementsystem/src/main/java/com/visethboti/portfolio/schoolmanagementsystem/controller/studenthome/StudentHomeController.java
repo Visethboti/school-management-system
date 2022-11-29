@@ -34,11 +34,11 @@ public class StudentHomeController {
 		return "/student-home/student-home";
 	}
 	
-	/*
+	
 	@GetMapping(value={"/**"})
 	public String redirectToHomePage() {
 		
 		return "redirect:/";
 	}
-	*/
+	
 }
