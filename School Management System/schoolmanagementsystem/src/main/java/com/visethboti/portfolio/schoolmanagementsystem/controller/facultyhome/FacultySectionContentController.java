@@ -16,8 +16,8 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentService;
-import com.visethboti.portfolio.schoolmanagementsystem.service.EnrollService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
 @RequestMapping("/facultyhome/sectioncontent")
@@ -25,15 +25,15 @@ public class FacultySectionContentController {
 	
 	private SectionService sectionService;
 	private AssignmentService assignmentService;
-	private EnrollService enrollService;
+	private UserService userService;
 	
 	@Autowired
 	public FacultySectionContentController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
-											@Qualifier("enrollServiceImpl") EnrollService enrollService) {
+											@Qualifier("userServiceImpl") UserService userService) {
 		this.sectionService = sectionService;
 		this.assignmentService = assignmentService;
-		this.enrollService = enrollService;
+		this.userService = userService;
 	}
 	
 	@GetMapping("")
@@ -82,7 +82,7 @@ public class FacultySectionContentController {
 	public String deleteAssignment(@RequestParam("sectionID") int theSectionID, Model theModel) {
 		
 		Section section = sectionService.findById(theSectionID);
-		List<User> students = enrollService.getStudentsEnrollBySectionID(theSectionID);
+		List<User> students = userService.findStudentsEnrollBySectionID(theSectionID);
 		
 		theModel.addAttribute("section", section);
 		theModel.addAttribute("students", students);

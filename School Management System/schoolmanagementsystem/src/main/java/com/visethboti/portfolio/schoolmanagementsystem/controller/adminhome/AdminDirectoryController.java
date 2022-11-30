@@ -48,7 +48,7 @@ public class AdminDirectoryController {
 	}
 	
 	@PostMapping("/save")
-	public String saveAdmin(@ModelAttribute("User") User theUser) {
+	public String processSaveAdmin(@ModelAttribute("User") User theUser) {
 		// save Student
 		userService.save(theUser);
 		
@@ -64,7 +64,7 @@ public class AdminDirectoryController {
 	}
 	
 	@GetMapping("/delete")
-	public String updateAdmin(@RequestParam("userID") int theID) {
+	public String processDeleteAdmin(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
 		return "redirect:/adminhome/userdirectory/admindirectory";
 	}

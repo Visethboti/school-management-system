@@ -26,7 +26,7 @@ public class UserDirectoryController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listUsers(Model theModel) {
+	public String listAllUsers(Model theModel) {
 		// get all Users
 		List<User> Users = userService.findAll();
 		
@@ -48,7 +48,7 @@ public class UserDirectoryController {
 	}
 	
 	@PostMapping("/save")
-	public String saveUser(@ModelAttribute("User") User theUser) {
+	public String processSaveUser(@ModelAttribute("User") User theUser) {
 		// save User
 		userService.save(theUser);
 		
@@ -57,13 +57,13 @@ public class UserDirectoryController {
 	}
 	
 	@GetMapping("/update")
-	public String showUpdateForm(@RequestParam("userID") int theID, Model theModel) {
+	public String showFormForUpdate(@RequestParam("userID") int theID, Model theModel) {
 		theModel.addAttribute("user", userService.findById(theID));
 		return "/admin-home/update-user";
 	}
 	
 	@GetMapping("/delete")
-	public String updateUser(@RequestParam("userID") int theID) {
+	public String processUpdateUser(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
 		return "redirect:/adminhome/userdirectory";
 	}

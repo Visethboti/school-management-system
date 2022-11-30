@@ -8,4 +8,10 @@
 
 #select count(Enroll.studentID) from Enroll where Enroll.sectionID = 101;
 
-select * from User where User.userID in (select Enroll.studentID from Enroll where Enroll.sectionID = 100)
+#select * from User where User.userID in (select Enroll.studentID from Enroll where Enroll.sectionID = 100)
+
+select Enroll.studentID 
+from Enroll, Section, Assigment 
+where Enroll.sectionID = Section.sectionID and 
+Section.sectionID = Assignment.sectionID and 
+Assignment.assignmentID = 1;

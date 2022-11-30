@@ -5,21 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.visethboti.portfolio.schoolmanagementsystem.dao.SectionRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.dao.TeachRepository;
-import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Teach;
 
 @Service
 public class TeachServiceImpl implements TeachService {
 
 	private TeachRepository teachRepository;
-	private SectionRepository sectionRepository;
 	
 	@Autowired
-	public TeachServiceImpl(TeachRepository theTeachRepository, SectionRepository sectionRepository) {
+	public TeachServiceImpl(TeachRepository theTeachRepository) {
 		this.teachRepository = theTeachRepository;
-		this.sectionRepository = sectionRepository;
 	}
 	
 	@Override
@@ -62,8 +58,5 @@ public class TeachServiceImpl implements TeachService {
 		teachRepository.deleteAllByFacultyIDEquals(theFacultyID);
 	}
 	
-	@Override
-	public List<Section> getSectionsByFacultyID(int theFacultyID) {
-		return sectionRepository.getAllSectionsTeachByFacultyID(theFacultyID);
-	}
+	
 }

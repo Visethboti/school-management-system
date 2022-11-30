@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Admin")
-public class Admin {
+public class Admin{
 	// define fields
 	@Id
 	@Column(name="adminID")

@@ -49,6 +49,7 @@
 		    				<td>
 		    					<a th:href="@{/facultyhome/sectioncontent/submissions(assignmentID=${tempAssignment.assignmentID})}" class="btn btn-secondary btn-sm mx-2">
 		    						View Student Submissions
+		    					</a>
 		    					<a th:href="@{/facultyhome/sectioncontent/deleteassignment(assignmentID=${tempAssignment.assignmentID},sectionID=${section.sectionID})}" class="btn btn-danger btn-sm"
 	    						onclick="if (!(confirm('Are you sure you want to delete this Assignment? All student submissions for this assignment will be deleted'))) return false">
 	    							Delete Assignment

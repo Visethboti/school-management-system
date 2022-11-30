@@ -8,25 +8,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.visethboti.portfolio.schoolmanagementsystem.dao.AssignmentRepository;
-import com.visethboti.portfolio.schoolmanagementsystem.dao.EnrollRepository;
 import com.visethboti.portfolio.schoolmanagementsystem.dao.SubmissionRepository;
-import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
-import com.visethboti.portfolio.schoolmanagementsystem.entity.Enroll;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 
 @Service
 public class SubmissionServiceImpl implements SubmissionService {
 
 	private SubmissionRepository submissionRepository;
-	private EnrollRepository enrollRepository;
-	private AssignmentRepository assignmentRepository;
 	
 	@Autowired
-	public SubmissionServiceImpl(SubmissionRepository submissionRepository, EnrollRepository enrollRepository, AssignmentRepository assignmentRepository) {
+	public SubmissionServiceImpl(SubmissionRepository submissionRepository) {
 		this.submissionRepository = submissionRepository;
-		this.enrollRepository = enrollRepository;
-		this.assignmentRepository = assignmentRepository;
 	}
 	
 	@Override
@@ -72,25 +64,13 @@ public class SubmissionServiceImpl implements SubmissionService {
 	
 	@Override
 	public List<List<Submission>> GetListofStudentSubmissions(int theAssignmentID) {
-		Optional<Assignment> result = assignmentRepository.findById(theAssignmentID);
-		
-		Assignment assignment = null;
-		
-		if(result.isPresent()) {
-			assignment = result.get();
-		} else {
-			// didnt find the assignment
-			throw new RuntimeException("Did not find student id - " + theAssignmentID);
-		}
-		
 		// Seperate into list for each student
 		List<List<Submission>> listOfStudentSubmission = new ArrayList<List<Submission>>();
-		List<Enroll> listOfEnrolls = enrollRepository.findAllBySectionIDEquals(assignment.getSectionID());
-		
-		ListIterator<Enroll> listOfEnrollsIterator = listOfEnrolls.listIterator();
-		while(listOfEnrollsIterator.hasNext()) {
-			Enroll enroll = listOfEnrollsIterator.next();
-			listOfStudentSubmission.add(submissionRepository.findAllByAssignmentIDAndStudentID(theAssignmentID, enroll.getStudentID()));
+		List<Integer> studentIDListHaveAssingment = submissionRepository.findAllStudentIDHaveAssignment(theAssignmentID);
+	
+		ListIterator<Integer> studentIDIterator = studentIDListHaveAssingment.listIterator();
+		while(studentIDIterator.hasNext()) {
+			listOfStudentSubmission.add(submissionRepository.findAllByAssignmentIDAndStudentID(theAssignmentID, studentIDIterator.next()));
 		}
 		
 		return listOfStudentSubmission;

@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
-import com.visethboti.portfolio.schoolmanagementsystem.service.EnrollService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
 
 @Controller
 @RequestMapping("/studenthome")
 public class StudentHomeController {
 	
-	private EnrollService enrollService;
+	private SectionService sectionService;
 	
 	@Autowired
-	public StudentHomeController(@Qualifier("enrollServiceImpl") EnrollService theEnrollService) {
-		this.enrollService = theEnrollService;
+	public StudentHomeController(@Qualifier("sectionServiceImpl") SectionService sectionService) {
+		this.sectionService = sectionService;
 	}
 	
 	@GetMapping("")
 	public String showAdminHomePage(Model theModel, Authentication authentication) {
 		
-		List<Section> enrollingSections = enrollService.getSectionsByStudentID(Integer.parseInt(authentication.getName())); // authentication.getName() return the userID of the current autheticated user
+		List<Section> enrollingSections = sectionService.findSectionsByStudentIDEnroll(Integer.parseInt(authentication.getName())); // authentication.getName() return the userID of the current autheticated user
 		
 		theModel.addAttribute("sections", enrollingSections);
 		

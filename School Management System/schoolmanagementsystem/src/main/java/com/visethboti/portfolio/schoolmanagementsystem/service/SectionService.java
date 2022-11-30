@@ -11,5 +11,7 @@ public interface SectionService {
 	public void deleteById(int theSectionID);
 	public List<Section> findAllByCourseID(int theCourseID);
 	
-	public void deleteAllByCourseIDEquals(int theCourseID);
+	public void deleteAllByCourseID(int theCourseID);
+	public List<Section> findSectionsByStudentIDEnroll(int theStudentID);
+	public List<Section> findSectionsByFacultyIDTeach(int theFacultyID);
 }

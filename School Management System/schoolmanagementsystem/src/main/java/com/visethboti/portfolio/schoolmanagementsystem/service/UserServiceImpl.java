@@ -149,11 +149,16 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<User> findAllStudentNotEnrollInSection(int theSectionID) {
-		return userRepository.getAllStudentNotEnrollBySectionID(theSectionID);
+		return userRepository.findAllStudentNotEnrollBySectionID(theSectionID);
 	}
 	
 	@Override
 	public List<User> findAllFacultyNotAssignInSection(int theSectionID) {
-		return userRepository.getAllFacultyNotAssignBySectionID(theSectionID);
+		return userRepository.findAllFacultyNotAssignBySectionID(theSectionID);
+	}
+	
+	@Override
+	public List<User> findStudentsEnrollBySectionID(int theSectionID) {
+		return userRepository.findAllStudentsEnrollBySectionID(theSectionID);
 	}
 }

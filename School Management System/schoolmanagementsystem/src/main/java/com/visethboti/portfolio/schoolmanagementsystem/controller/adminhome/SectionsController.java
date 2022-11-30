@@ -56,7 +56,7 @@ public class SectionsController {
 	}
 	
 	@PostMapping("/save")
-	public String saveSection(@ModelAttribute("Section") Section theSection) {
+	public String processSaveSection(@ModelAttribute("Section") Section theSection) {
 		// save Section
 		sectionService.save(theSection);
 		
@@ -65,14 +65,14 @@ public class SectionsController {
 	}
 	
 	@GetMapping("/update")
-	public String showUpdateForm(@RequestParam("sectionID") int theID, @RequestParam("courseID") int courseID, Model theModel) {
+	public String showFormForUpdate(@RequestParam("sectionID") int theID, @RequestParam("courseID") int courseID, Model theModel) {
 		theModel.addAttribute("section", sectionService.findById(theID));
 		theModel.addAttribute("course", courseService.findById(courseID));
 		return "/admin-home/update-section";
 	}
 	
 	@GetMapping("/delete")
-	public String updateSection(@RequestParam("sectionID") int theID, @RequestParam("courseID") int courseID) {
+	public String processUpdateSection(@RequestParam("sectionID") int theID, @RequestParam("courseID") int courseID) {
 		sectionService.deleteById(theID);
 		return "redirect:/adminhome/coursedirectory/sections?courseID="+courseID;
 	}

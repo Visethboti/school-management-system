@@ -48,7 +48,7 @@ public class StudentDirectoryController {
 	}
 	
 	@PostMapping("/save")
-	public String saveStudent(@ModelAttribute("User") User theUser) {
+	public String processSaveStudent(@ModelAttribute("User") User theUser) {
 		// save Student
 		userService.save(theUser);
 		
@@ -58,13 +58,13 @@ public class StudentDirectoryController {
 	}
 	
 	@GetMapping("/update")
-	public String showUpdateForm(@RequestParam("userID") int theID, Model theModel) {
+	public String showFormForUpdate(@RequestParam("userID") int theID, Model theModel) {
 		theModel.addAttribute("user", userService.findById(theID));
 		return "/admin-home/update-student";
 	}
 	
 	@GetMapping("/delete")
-	public String updateStudent(@RequestParam("userID") int theID) {
+	public String processUpdateStudent(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
 		return "redirect:/adminhome/userdirectory/studentdirectory";
 	}

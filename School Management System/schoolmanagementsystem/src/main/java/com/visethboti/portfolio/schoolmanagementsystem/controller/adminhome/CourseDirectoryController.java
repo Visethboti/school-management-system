@@ -48,7 +48,7 @@ public class CourseDirectoryController {
 	}
 	
 	@PostMapping("/save")
-	public String saveCourse(@ModelAttribute("Course") Course theCourse) {
+	public String processSaveCourse(@ModelAttribute("Course") Course theCourse) {
 		// save Course
 		courseService.save(theCourse);
 		
@@ -57,13 +57,13 @@ public class CourseDirectoryController {
 	}
 	
 	@GetMapping("/update")
-	public String showUpdateForm(@RequestParam("courseID") int theID, Model theModel) {
+	public String showFormForUpdate(@RequestParam("courseID") int theID, Model theModel) {
 		theModel.addAttribute("course", courseService.findById(theID));
 		return "/admin-home/update-course";
 	}
 	
 	@GetMapping("/delete")
-	public String updateCourse(@RequestParam("courseID") int theID) {
+	public String processDeleteCourse(@RequestParam("courseID") int theID) {
 		courseService.deleteById(theID);
 		return "redirect:/adminhome/coursedirectory";
 	}
