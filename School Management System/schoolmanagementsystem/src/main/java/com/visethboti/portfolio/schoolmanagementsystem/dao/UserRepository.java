@@ -19,3 +19,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(nativeQuery=true, value="select * from User where User.role = 'ROLE_FACULTY' and User.userID not in (select Teach.facultyID from Teach where Teach.sectionID = ?1)")
 	List<User> findAllFacultyNotAssignBySectionID(int theSectionID);
 }
+
+

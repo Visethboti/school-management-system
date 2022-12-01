@@ -25,7 +25,7 @@ public class FacultyHomeController {
 	}
 	
 	@GetMapping("")
-	public String showAdminHomePage(Model theModel, Authentication authentication) {
+	public String showFacultyHomePage(Model theModel, Authentication authentication) {
 		
 		List<Section> teachingSections = sectionService.findSectionsByFacultyIDTeach(Integer.parseInt(authentication.getName())); // authentication.getName() return the userID of the current autheticated user
 		

@@ -24,14 +24,14 @@ import com.visethboti.portfolio.schoolmanagementsystem.service.SubmissionService
 
 @Controller
 @RequestMapping("/studenthome/sectioncontent/submissions")
-public class StudentAssignmentSubmissionController {
+public class StudentSubmissionController {
 	
 	private SectionService sectionService;
 	private SubmissionService submissionService;
 	private AssignmentService assignmentService;
 	
 	@Autowired
-	public StudentAssignmentSubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
+	public StudentSubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("submissionServiceImpl") SubmissionService submissionService,
 											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService) {
 		this.sectionService = sectionService;
@@ -40,7 +40,7 @@ public class StudentAssignmentSubmissionController {
 	}
 	
 	@GetMapping("")
-	public String showSubmission(@RequestParam("assignmentID") int theAssignmentID, 
+	public String listAssigngmentSubmissions(@RequestParam("assignmentID") int theAssignmentID, 
 		Authentication authentication, Model theModel) {
 		
 		Assignment assignment = assignmentService.findById(theAssignmentID);
@@ -55,7 +55,7 @@ public class StudentAssignmentSubmissionController {
 	}
 	
 	@GetMapping("/addsubmission")
-	public String showAddsubmission(@RequestParam("assignmentID") int theAssignmentID, 
+	public String showFormForAddSubmission(@RequestParam("assignmentID") int theAssignmentID, 
 			Authentication authentication, Model theModel) {
 		
 		Assignment assignment = assignmentService.findById(theAssignmentID);
@@ -75,7 +75,7 @@ public class StudentAssignmentSubmissionController {
 	}
 	
 	@PostMapping("/addsubmission")
-	public String showAddsubmission(@ModelAttribute("Submission") Submission submission, @RequestParam("assignmentID") int theAssignmentID) {
+	public String processAddSubmission(@ModelAttribute("Submission") Submission submission, @RequestParam("assignmentID") int theAssignmentID) {
 		Date now = new Date();
 		Timestamp timestamp = new Timestamp(now.getTime());
 		submission.setSubmissionDate(timestamp.toString());

@@ -46,7 +46,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listSections(@RequestParam("sectionID") int theSectionID, @RequestParam("courseID") int theCourseID, Model theModel) {
+	public String listSectionStudentFaculty(@RequestParam("sectionID") int theSectionID, @RequestParam("courseID") int theCourseID, Model theModel) {
 		List<Enroll> enrolls = enrollService.findAllBySectionID(theSectionID);
 		List<Teach> teachs = teachService.findAllBySectionID(theSectionID);
 		
@@ -60,7 +60,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/enrollstudent")
-	public String enrollstudent(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String showEnrollStudentPage(@RequestParam("sectionID") int theSectionID, Model theModel) {
 		// create model attribute to bind form data
 		
 		Enroll theEnroll = new Enroll();
@@ -77,7 +77,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/saveenroll")
-	public String saveStudent(@RequestParam("sectionID") int theSectionID, 
+	public String processEnrollStudent(@RequestParam("sectionID") int theSectionID, 
 			@RequestParam("userID") int theStudentID,
 			@RequestParam("courseID") int theCourseID) {
 		Date now = new Date();
@@ -101,7 +101,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/deleteenroll")
-	public String deleteEnroll(@RequestParam("sectionID") int theSectionID, 
+	public String processUnenrollStudent(@RequestParam("sectionID") int theSectionID, 
 			@RequestParam("userID") int theStudentID,
 			@RequestParam("courseID") int theCourseID) {
 		enrollService.deleteById(theSectionID, theStudentID);
@@ -109,7 +109,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/assignfaculty")
-	public String assignfaculty(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String showAssignFacultyPage(@RequestParam("sectionID") int theSectionID, Model theModel) {
 		// create model attribute to bind form data
 		
 		Teach theTeach = new Teach();
@@ -126,7 +126,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/saveteach")
-	public String saveFaculty(@RequestParam("sectionID") int theSectionID, 
+	public String processAssignFaculty(@RequestParam("sectionID") int theSectionID, 
 			@RequestParam("userID") int theFacultyID, 
 			@RequestParam("courseID") int theCourseID) {
 		Date now = new Date();
@@ -142,7 +142,7 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/deleteteach")
-	public String deleteTeach(@RequestParam("sectionID") int theSectionID, 
+	public String processUnassignFaculty(@RequestParam("sectionID") int theSectionID, 
 			@RequestParam("userID") int theFacultyID,
 			@RequestParam("courseID") int theCourseID) {
 		teachService.deleteById(theSectionID, theFacultyID);

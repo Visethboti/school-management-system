@@ -66,7 +66,7 @@ public class SubmissionServiceImpl implements SubmissionService {
 	public List<List<Submission>> GetListofStudentSubmissions(int theAssignmentID) {
 		// Seperate into list for each student
 		List<List<Submission>> listOfStudentSubmission = new ArrayList<List<Submission>>();
-		List<Integer> studentIDListHaveAssingment = submissionRepository.findAllStudentIDHaveAssignment(theAssignmentID);
+		List<Integer> studentIDListHaveAssingment = submissionRepository.getAllStudentIDHaveAssignment(theAssignmentID);
 	
 		ListIterator<Integer> studentIDIterator = studentIDListHaveAssingment.listIterator();
 		while(studentIDIterator.hasNext()) {

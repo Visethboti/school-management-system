@@ -21,14 +21,14 @@ import com.visethboti.portfolio.schoolmanagementsystem.service.SubmissionService
 
 @Controller
 @RequestMapping("/facultyhome/sectioncontent/submissions")
-public class FacultyAssignmentSubmissionController {
+public class FacultySubmissionController {
 	
 	private SectionService sectionService;
 	private AssignmentService assignmentService;
 	private SubmissionService submissionService;
 	
 	@Autowired
-	public FacultyAssignmentSubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
+	public FacultySubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
 											@Qualifier("submissionServiceImpl") SubmissionService submissionService) {
 		this.sectionService = sectionService;
@@ -37,7 +37,7 @@ public class FacultyAssignmentSubmissionController {
 	}
 	
 	@GetMapping("")
-	public String showSectionContent(@RequestParam("assignmentID") int theAssignmentID, Model theModel) {
+	public String listStudentsSubmissions(@RequestParam("assignmentID") int theAssignmentID, Model theModel) {
 		
 		Assignment assignment = assignmentService.findById(theAssignmentID);	
 		Section section = sectionService.findById(assignment.getSectionID());
@@ -51,7 +51,7 @@ public class FacultyAssignmentSubmissionController {
 	}
 	
 	@PostMapping("/addgrade")
-	public String saveGrade(@RequestParam("assignmentID") int theAssignmentID, 
+	public String processSaveGrade(@RequestParam("assignmentID") int theAssignmentID, 
 			@ModelAttribute("tempSubmission") Submission theSubmission, Model theModel) {
 		
 		submissionService.save(theSubmission);

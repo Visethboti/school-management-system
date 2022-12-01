@@ -10,7 +10,7 @@ public interface SubmissionService {
 	public void save(Submission theSubmission);
 	public void deleteById(int theSubmissionID);
 	
-	public List<Submission> findAllByAssignmentIDAndStudentID(int theAssignmentID, int theStudentID);
+	public List<Submission> findAllByAssignmentIDAndStudentID(int assignmentID, int StudentID);
 	public List<Submission> findAllByAssignmentID(int theAssignmentID);
 	public List<List<Submission>> GetListofStudentSubmissions(int theAssignmentID);
 	
