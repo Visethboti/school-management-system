@@ -9,6 +9,6 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentG
 
 public interface AssignmentStudentGradeRepository extends JpaRepository<AssignmentStudentGrade, Integer> {
 	
-	@Query(nativeQuery=true, value="select * from AssignmentStudentGrade where AssignmentStudentGrade.assignmentID = ?1")
+	@Query(nativeQuery=true, value="select * from AssignmentStudentGrade where AssignmentStudentGrade.assignmentID = ?1 order by AssignmentStudentGrade.studentID")
 	public List<AssignmentStudentGrade> findAllByAssignmentID(int assigmentID);
 }

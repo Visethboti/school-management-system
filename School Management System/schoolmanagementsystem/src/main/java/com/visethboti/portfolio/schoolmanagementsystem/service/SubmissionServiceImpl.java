@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.visethboti.portfolio.schoolmanagementsystem.dao.SubmissionRepository;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentGrade;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 
 @Service
@@ -82,14 +83,17 @@ public class SubmissionServiceImpl implements SubmissionService {
 	}
 	
 	@Override
-	public List<List<Submission>> GetListofAllStudentSubmissions(int theAssignmentID) {
+	public List<List<Submission>> GetListofAllStudentSubmissions(List<AssignmentStudentGrade> assignmentStudentGradeList) {
 		// Seperate into list for each student
 		List<List<Submission>> listOfStudentSubmission = new ArrayList<List<Submission>>();
-		List<Integer> studentIDListHaveAssingment = submissionRepository.getAllStudentIDHaveAssignment(theAssignmentID);
 	
-		ListIterator<Integer> studentIDIterator = studentIDListHaveAssingment.listIterator();
-		while(studentIDIterator.hasNext()) {
-			listOfStudentSubmission.add(submissionRepository.findAllByAssignmentIDAndStudentID(theAssignmentID, studentIDIterator.next()));
+		for(int i = 0; i < assignmentStudentGradeList.size(); i++) {
+			List<Submission> submissionList = new ArrayList<Submission>();
+			
+			submissionList = submissionRepository.findAllByAssignmentIDAndStudentID(assignmentStudentGradeList.get(i).getAssignmentID(),
+					assignmentStudentGradeList.get(i).getStudentID());
+			
+			listOfStudentSubmission.add(submissionList);
 		}
 		
 		return listOfStudentSubmission;

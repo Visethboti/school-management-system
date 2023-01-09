@@ -2,6 +2,7 @@ package com.visethboti.portfolio.schoolmanagementsystem.service;
 
 import java.util.List;
 
+import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentGrade;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 
 public interface SubmissionService {
@@ -16,5 +17,5 @@ public interface SubmissionService {
 	
 	public void deleteAllByStudentID(int theStudentID);
 	
-	public List<List<Submission>> GetListofAllStudentSubmissions(int theAssignmentID);
+	public List<List<Submission>> GetListofAllStudentSubmissions(List<AssignmentStudentGrade> assignmentStudentGradeList);
 }

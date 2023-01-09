@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentGrade;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentStudentGradeService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SubmissionService;
 
@@ -26,14 +28,17 @@ public class FacultySubmissionController {
 	private SectionService sectionService;
 	private AssignmentService assignmentService;
 	private SubmissionService submissionService;
+	private AssignmentStudentGradeService assignmentStudentGradeService;
 	
 	@Autowired
 	public FacultySubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
-											@Qualifier("submissionServiceImpl") SubmissionService submissionService) {
+											@Qualifier("submissionServiceImpl") SubmissionService submissionService,
+											AssignmentStudentGradeService assignmentStudentGradeService) {
 		this.sectionService = sectionService;
 		this.assignmentService = assignmentService;
 		this.submissionService = submissionService;
+		this.assignmentStudentGradeService = assignmentStudentGradeService;
 	}
 	
 	@GetMapping("")
@@ -41,10 +46,12 @@ public class FacultySubmissionController {
 		
 		Assignment assignment = assignmentService.findById(theAssignmentID);	
 		Section section = sectionService.findById(assignment.getSectionID());
-		List<List<Submission>> submissionlist = submissionService.GetListofStudentSubmissions(theAssignmentID);
+		List<AssignmentStudentGrade> assignmentStudentGradeList = assignmentStudentGradeService.findAllByAssignmentID(theAssignmentID);
+		List<List<Submission>> submissionlist = submissionService.GetListofAllStudentSubmissions(assignmentStudentGradeList);
 		
-		theModel.addAttribute("assignments", assignment);
+		theModel.addAttribute("assignment", assignment);
 		theModel.addAttribute("section", section);
+		theModel.addAttribute("assignmentStudentGradeList", assignmentStudentGradeList);
 		theModel.addAttribute("submissions", submissionlist);
 		
 		return "/faculty-home/assignment-student-submissions";
@@ -52,19 +59,11 @@ public class FacultySubmissionController {
 	
 	@PostMapping("/addgrade")
 	public String processSaveGrade(@RequestParam("assignmentID") int theAssignmentID, 
-			@ModelAttribute("tempSubmission") Submission theSubmission, Model theModel) {
+			@ModelAttribute("assignmentStudentGradeList[iterStat.index]") AssignmentStudentGrade assignmentStudentGrade) {
 		
-		submissionService.save(theSubmission);
+		assignmentStudentGradeService.save(assignmentStudentGrade);
 		
-		Assignment assignment = assignmentService.findById(theAssignmentID);	
-		Section section = sectionService.findById(assignment.getSectionID());
-		List<List<Submission>> submissionlist = submissionService.GetListofStudentSubmissions(theAssignmentID);
-		
-		theModel.addAttribute("assignments", assignment);
-		theModel.addAttribute("section", section);
-		theModel.addAttribute("submissions", submissionlist);
-		
-		return "/faculty-home/assignment-student-submissions";
+		return "redirect:/facultyhome/sectioncontent/submissions?assignmentID="+assignmentStudentGrade.getAssignmentID();
 	}
 	
 	/*

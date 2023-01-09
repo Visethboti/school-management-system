@@ -39,10 +39,13 @@
 		    			</tr>
 		    		</thead>
 		    		<tbody>
-		    			<tr th:each="tempSubmissionList: ${submissions}">
+		    			<tr th:each="tempSubmissionList,iterStat: ${submissions}">
 		    				<td>
+		    				<!-- 
 		    					<span th:if="${tempSubmissionList!=null and !tempSubmissionList.empty}" th:text="${tempSubmissionList[0].studentID}" class="h4"></span>
 		    					<span th:if="${!(tempSubmissionList!=null and !tempSubmissionList.empty)}" class="h4">Empty Submission List</span>
+		    				-->
+		    				<span th:text="${assignmentStudentGradeList[iterStat.index].studentID}" class="h4"></span>
 		    				</td>
 		    				<td>
 			    				<table class="table table-bordered table-striped" >
@@ -77,13 +80,15 @@
 						    	</table>
 		    				</td>
 		    				<td>
-		    				<!-- 
-		    					<form action="#" th:action="@{/facultyhome/sectioncontent/submissions/addgrade(assignmentID=${tempSubmission.assignmentID})}"
-							    	th:object="${tempSubmission}" method="POST">
-		    						<input type="text" th:value="*{submissionGrade}"name="submissionGrade" id="submissionGrade">
+		    					<form action="#" th:action="@{/facultyhome/sectioncontent/submissions/addgrade(assignmentID=${assignmentStudentGradeList[iterStat.index].assignmentID})}"
+							    	th:object="${assignmentStudentGradeList[iterStat.index]}" method="POST">
+		    						<input type="number" th:value="${assignmentStudentGradeList[iterStat.index].assignmentStudentGrade}"
+		    							name="assignmentStudentGrade" id="assignmentStudentGrade" th:max="${assignment.assignmentGrade}" style="width:80px;">
+		    						<span th:text="'/' + ${assignment.assignmentGrade}"></span>
+		    						<input type="hidden" th:value="${assignmentStudentGradeList[iterStat.index].studentID}"name="studentID" id="studentID"> 
+		    						<input type="hidden" th:value="${assignmentStudentGradeList[iterStat.index].assignmentID}"name="assignmentID" id="assignmentID"> 
 			    					<button type="submit"class="btn btn-secondary btn-sm">Save</button> 
 		    					</form>
-		    				-->
 		    				</td>
 		    				
 		    			</tr>

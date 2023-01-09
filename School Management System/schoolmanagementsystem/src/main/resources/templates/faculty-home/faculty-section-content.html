@@ -38,6 +38,7 @@
 		    				<th>Assignment ID</th>
 		    				<th>Assignment Name</th>
 		    				<th>Assignment Description</th>
+		    				<th>Assignment Grade</th>
 		    				<th>Actions</th>
 		    			</tr>
 		    		</thead>
@@ -46,6 +47,7 @@
 		    				<td th:text="${tempAssignment.assignmentID}"/>
 		    				<td th:text="${tempAssignment.assignmentName}"/>
 		    				<td th:text="${tempAssignment.assignmentDescription}"/>
+		    				<td th:text="${tempAssignment.assignmentGrade}"/>
 		    				<td>
 		    					<a th:href="@{/facultyhome/sectioncontent/submissions(assignmentID=${tempAssignment.assignmentID})}" class="btn btn-secondary btn-sm mx-2">
 		    						View Student Submissions
