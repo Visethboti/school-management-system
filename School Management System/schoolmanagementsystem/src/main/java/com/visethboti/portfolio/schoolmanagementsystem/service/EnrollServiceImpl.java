@@ -12,10 +12,12 @@ import com.visethboti.portfolio.schoolmanagementsystem.entity.Enroll;
 public class EnrollServiceImpl implements EnrollService {
 
 	private EnrollRepository enrollRepository;
+	private AssignmentStudentGradeService assignmentStudentGradeService;
 	
 	@Autowired
-	public EnrollServiceImpl(EnrollRepository theEnrollRepository) {
+	public EnrollServiceImpl(EnrollRepository theEnrollRepository, AssignmentStudentGradeService assignmentStudentGradeService) {
 		this.enrollRepository = theEnrollRepository;
+		this.assignmentStudentGradeService = assignmentStudentGradeService;
 	}
 	
 	@Override
@@ -31,6 +33,9 @@ public class EnrollServiceImpl implements EnrollService {
 	@Override
 	public void save(Enroll theEnroll) {
 		enrollRepository.save(theEnroll);
+		
+		// create new assignmentStudentGrade for each existing assignments in this section fo9r this student
+		assignmentStudentGradeService.createAssignmentStudentGradesForNewStudentEnroll(theEnroll);
 	}
 
 	@Override

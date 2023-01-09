@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS school_management_system_db;
 
 USE school_management_system_db;
 
-
+DROP TABLE IF EXISTS AssignmentStudentGrade;
 DROP TABLE IF EXISTS Submission;
 DROP TABLE IF EXISTS Assignment;
 DROP TABLE IF EXISTS Teach;

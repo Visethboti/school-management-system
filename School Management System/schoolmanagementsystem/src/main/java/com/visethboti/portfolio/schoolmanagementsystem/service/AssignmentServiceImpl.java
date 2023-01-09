@@ -14,10 +14,13 @@ public class AssignmentServiceImpl implements AssignmentService {
 
 	
 	private AssignmentRepository assignmentRepository;
+	private AssignmentStudentGradeService assignmentStudentGradeServer;
 	
 	@Autowired
-	public AssignmentServiceImpl(AssignmentRepository theAssignmentRepository) {
+	public AssignmentServiceImpl(AssignmentRepository theAssignmentRepository,
+			AssignmentStudentGradeService assignmentStudentGradeServer) {
 		this.assignmentRepository = theAssignmentRepository;
+		this.assignmentStudentGradeServer = assignmentStudentGradeServer;
 	}
 	
 	@Override
@@ -44,6 +47,9 @@ public class AssignmentServiceImpl implements AssignmentService {
 	@Override
 	public void save(Assignment theAssignment) {
 		assignmentRepository.save(theAssignment);
+		
+		// create new assignmentStudentGrade for each student for this assignment
+		assignmentStudentGradeServer.createAssignmentStudentGradeForNewAssignment(theAssignment);
 	}
 
 	@Override
