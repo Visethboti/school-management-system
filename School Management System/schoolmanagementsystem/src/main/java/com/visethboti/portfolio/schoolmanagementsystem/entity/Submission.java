@@ -2,6 +2,8 @@ package com.visethboti.portfolio.schoolmanagementsystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class Submission {
 	// define fields
 	@Id
 	@Column(name="submissionID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)   
 	private int submissionID;
 	
 	@Column(name="studentID")

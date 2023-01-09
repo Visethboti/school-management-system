@@ -70,6 +70,8 @@ public class AssignmentStudentGradeServiceImpl implements AssignmentStudentGrade
 			newAssignmentStudentGrade.setAssignmentID(theAssignment.getAssignmentID());
 			newAssignmentStudentGrade.setStudentID(listEnroll.get(i).getStudentID());
 			newAssignmentStudentGrade.setAssignmentStudentGrade(0);
+			
+			save(newAssignmentStudentGrade);
 		}
 		
 	}
@@ -84,6 +86,13 @@ public class AssignmentStudentGradeServiceImpl implements AssignmentStudentGrade
 			newAssignmentStudentGrade.setAssignmentID(listAssignment.get(i).getAssignmentID());
 			newAssignmentStudentGrade.setStudentID(enroll.getStudentID());
 			newAssignmentStudentGrade.setAssignmentStudentGrade(0);
+			
+			save(newAssignmentStudentGrade);
 		}
+	}
+	
+	@Override
+	public List<AssignmentStudentGrade> findAllByAssignmentID(int assigmentID) {
+		return assignmentStudentGradeRepository.findAllByAssignmentID(assigmentID);
 	}
 }

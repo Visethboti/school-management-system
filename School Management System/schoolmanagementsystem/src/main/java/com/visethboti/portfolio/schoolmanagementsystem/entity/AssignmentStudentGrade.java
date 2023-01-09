@@ -19,7 +19,7 @@ public class AssignmentStudentGrade {
 	@Column(name="studentID")
 	private int studentID;
 	
-	@Column(name="assignmententStudentGrade")
+	@Column(name="assignmentStudentGrade")
 	private int assignmentStudentGrade;
 
 	// constructors

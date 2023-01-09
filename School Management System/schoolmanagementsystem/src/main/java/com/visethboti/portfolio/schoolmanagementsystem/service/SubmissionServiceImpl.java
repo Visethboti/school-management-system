@@ -80,4 +80,18 @@ public class SubmissionServiceImpl implements SubmissionService {
 	public void deleteAllByStudentID(int theStudentID) {
 		submissionRepository.deleteAllByStudentIDEquals(theStudentID);
 	}
+	
+	@Override
+	public List<List<Submission>> GetListofAllStudentSubmissions(int theAssignmentID) {
+		// Seperate into list for each student
+		List<List<Submission>> listOfStudentSubmission = new ArrayList<List<Submission>>();
+		List<Integer> studentIDListHaveAssingment = submissionRepository.getAllStudentIDHaveAssignment(theAssignmentID);
+	
+		ListIterator<Integer> studentIDIterator = studentIDListHaveAssingment.listIterator();
+		while(studentIDIterator.hasNext()) {
+			listOfStudentSubmission.add(submissionRepository.findAllByAssignmentIDAndStudentID(theAssignmentID, studentIDIterator.next()));
+		}
+		
+		return listOfStudentSubmission;
+	}
 }

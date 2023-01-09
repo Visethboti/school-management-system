@@ -32,7 +32,7 @@ public class EnrollServiceImpl implements EnrollService {
 
 	@Override
 	public void save(Enroll theEnroll) {
-		enrollRepository.save(theEnroll);
+		theEnroll = enrollRepository.save(theEnroll);
 		
 		// create new assignmentStudentGrade for each existing assignments in this section fo9r this student
 		assignmentStudentGradeService.createAssignmentStudentGradesForNewStudentEnroll(theEnroll);

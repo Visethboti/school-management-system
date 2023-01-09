@@ -46,7 +46,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
 	@Override
 	public void save(Assignment theAssignment) {
-		assignmentRepository.save(theAssignment);
+		theAssignment = assignmentRepository.save(theAssignment);
 		
 		// create new assignmentStudentGrade for each student for this assignment
 		assignmentStudentGradeServer.createAssignmentStudentGradeForNewAssignment(theAssignment);

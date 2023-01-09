@@ -35,6 +35,7 @@
 		    			<tr>
 		    				<th>Student ID</th>
 		    				<th>Submissions</th>
+		    				<th>Submission Grade</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
@@ -75,6 +76,16 @@
 						    		</tbody>
 						    	</table>
 		    				</td>
+		    				<td>
+		    				<!-- 
+		    					<form action="#" th:action="@{/facultyhome/sectioncontent/submissions/addgrade(assignmentID=${tempSubmission.assignmentID})}"
+							    	th:object="${tempSubmission}" method="POST">
+		    						<input type="text" th:value="*{submissionGrade}"name="submissionGrade" id="submissionGrade">
+			    					<button type="submit"class="btn btn-secondary btn-sm">Save</button> 
+		    					</form>
+		    				-->
+		    				</td>
+		    				
 		    			</tr>
 		    		</tbody>
 		    	</table>

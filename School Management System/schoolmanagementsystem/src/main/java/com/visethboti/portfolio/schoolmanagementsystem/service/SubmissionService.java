@@ -15,4 +15,6 @@ public interface SubmissionService {
 	public List<List<Submission>> GetListofStudentSubmissions(int theAssignmentID);
 	
 	public void deleteAllByStudentID(int theStudentID);
+	
+	public List<List<Submission>> GetListofAllStudentSubmissions(int theAssignmentID);
 }
