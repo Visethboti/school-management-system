@@ -112,7 +112,7 @@ values (1, 61001, 50, "Assignment 1", "What time is it?"),
     (9, 53001, 100, "Assignment 3", "Describe the SOLID principles."),
     (10, 53002, 100, "Assignment 1", "Describe the Layered Architecture Pattern.");
     
-INSERT INTO assignmentStudentGrade (assignmentID, studentID, assignmentStudentGrade)
+INSERT INTO AssignmentStudentGrade (assignmentID, studentID, assignmentStudentGrade)
 values (1, 201, 0),
 		(1, 202, 0),
         (1, 203, 0),
