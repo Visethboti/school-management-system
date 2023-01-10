@@ -152,5 +152,8 @@ values (1, 201, 1, 0, "It is time to go home.", NOW()),
 		(2, 201, 1, 0, "It's 4 PM.", NOW()),
         (3, 201, 1, 0, "It's 4:30 PM Tuesday 10th of Jan 2023.", NOW()),
         (4, 202, 1, 0, "The time is 3:50 PM", NOW()),
-        (5, 203, 1, 0, "The time is 3:50 PM", NOW());
+        (5, 203, 1, 0, "The time is now.", NOW()),
+        (6, 201, 2, 0, "My name is 203", NOW()),
+        (7, 202, 2, 0, "202 is my name", NOW()),
+        (8, 203, 2, 0, "My name is 203", NOW());
         

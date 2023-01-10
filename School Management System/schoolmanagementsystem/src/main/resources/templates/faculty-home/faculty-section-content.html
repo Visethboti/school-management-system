@@ -24,13 +24,18 @@
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
   </nav>
   <body>
-    <main>
-    	<div class="container">
-    		<div class = row style="margin-top: 50px;">
-    			<a th:href="@{/facultyhome/sectioncontent/addassignment(sectionID=${section.sectionID})}" 
-	    		class="btn btn-primary btn-lg btn-dark mb-2">Create New Assignment</a>
-	    		<div class="col-md-3 offset-md-2">
-		    		<p class="h4 mb-2">List of assignments</p>
+    <main class="mx-5">
+    	<div class="container-fluid">
+    		<div class="col" style="margin-top: 50px;">
+    			<div>
+    				<a th:href="@{/facultyhome/sectioncontent/addassignment(sectionID=${section.sectionID})}" 
+	    			class="btn btn-primary btn-lg btn-dark ">Create New Assignment</a>
+    			</div>
+    			
+	    		<div class="row justify-content-center">
+	    			<div class="col-2">
+		    			<p class="h4 mb-3">List of assignments</p>
+		    		</div>
 		    	</div>
 	    		<table class="table table-bordered table-striped">
 		    		<thead class="thead-dark">
