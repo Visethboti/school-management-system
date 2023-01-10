@@ -39,6 +39,7 @@
 	    				<th>Age</th>
 	    				<th>Gender</th>
 	    				<th>Enable</th>
+	    				<th>Action</th>
 	    			</tr>
 	    		</thead>
 	    		<tbody>
@@ -49,6 +50,11 @@
 	    				<td th:text="${tempUser.age}"/>
 	    				<td th:text="${tempUser.sex}"/>
 	    				<td th:text="${tempUser.enabled}"/>
+	    				<td>
+	    					<a th:href="@{/facultyhome/sectioncontent/classlist/studentgrades(sectionID=${section.sectionID}, studentID=${tempUser.userID})}" class="btn btn-secondary btn-sm">
+	    						Grades
+	    					</a>
+		    			</td>
 	    			</tr>
 	    		</tbody>
 	    	</table>

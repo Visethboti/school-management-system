@@ -19,6 +19,7 @@
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Classlist<span class="sr-only">(current)</span></a>
+			<a th:href="@{/studenthome/sectioncontent/sectiongrade(sectionID=${section.sectionID})}" class="nav-item nav-link active">Grades<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -36,6 +37,7 @@
 		    				<th>Assignment ID</th>
 		    				<th>Assignment Name</th>
 		    				<th>Assignment Description</th>
+		    				<th>Assignment Grade</th>
 		    				<th>Actions</th>
 		    			</tr>
 		    		</thead>
@@ -44,6 +46,7 @@
 		    				<td th:text="${tempAssignment.assignmentID}"/>
 		    				<td th:text="${tempAssignment.assignmentName}"/>
 		    				<td th:text="${tempAssignment.assignmentDescription}"/>
+		    				<td th:text="${tempAssignment.assignmentGrade}"/>
 		    				<td>
 		    					<a th:href="@{/studenthome/sectioncontent/submissions(assignmentID=${tempAssignment.assignmentID})}" class="btn btn-secondary btn-sm">
 		    						View Submissions

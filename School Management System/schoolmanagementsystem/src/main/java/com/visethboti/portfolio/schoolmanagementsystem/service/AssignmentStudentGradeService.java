@@ -16,4 +16,8 @@ public interface AssignmentStudentGradeService {
 	public void createAssignmentStudentGradesForNewStudentEnroll(Enroll enroll);
 	
 	public List<AssignmentStudentGrade> findAllByAssignmentID(int assigmentID);
+	public List<AssignmentStudentGrade> findAllBySectionIDAndStudentID(int sectionID, int studentID);
+	
+	public AssignmentStudentGrade findByAssignmentIDAndStudentID(int assignmentID, int studentID);
+	
 }

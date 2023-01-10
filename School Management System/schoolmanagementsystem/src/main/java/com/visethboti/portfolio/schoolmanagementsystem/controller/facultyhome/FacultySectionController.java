@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentGrade;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.User;
 import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentStudentGradeService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
@@ -26,14 +28,17 @@ public class FacultySectionController {
 	private SectionService sectionService;
 	private AssignmentService assignmentService;
 	private UserService userService;
+	private AssignmentStudentGradeService assignmentStudentGradeService;
 	
 	@Autowired
 	public FacultySectionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
-											@Qualifier("userServiceImpl") UserService userService) {
+											@Qualifier("userServiceImpl") UserService userService,
+											AssignmentStudentGradeService assignmentStudentGradeService) {
 		this.sectionService = sectionService;
 		this.assignmentService = assignmentService;
 		this.userService = userService;
+		this.assignmentStudentGradeService = assignmentStudentGradeService;
 	}
 	
 	@GetMapping("")
@@ -88,6 +93,33 @@ public class FacultySectionController {
 		theModel.addAttribute("students", students);
 		
 		return "/faculty-home/classlist";
+	}
+	
+	@GetMapping("/classlist/studentgrades")
+	public String showStudentGrade(@RequestParam("sectionID") int theSectionID, @RequestParam("studentID") int studentID, 
+			Model theModel) {
+		
+		Section section = sectionService.findById(theSectionID);
+		User student = userService.findById(studentID);
+		List<Assignment> assignmentList = assignmentService.findAllBySectionID(theSectionID);
+		List<AssignmentStudentGrade> assignmentStudentGradeList = assignmentStudentGradeService.findAllBySectionIDAndStudentID(theSectionID, studentID);
+		
+		theModel.addAttribute("section", section);
+		theModel.addAttribute("assignmentList", assignmentList);
+		theModel.addAttribute("assignmentStudentGradeList", assignmentStudentGradeList);
+		theModel.addAttribute("student", student);
+		
+		return "/faculty-home/student-grades";
+	}
+	
+	@PostMapping("/classlist/addgrade")
+	public String processSaveGrade(@RequestParam("assignmentID") int theAssignmentID, 
+			@RequestParam("sectionID") int sectionID, 
+			@ModelAttribute("assignmentStudentGradeList[iterStat.index]") AssignmentStudentGrade assignmentStudentGrade) {
+		
+		assignmentStudentGradeService.save(assignmentStudentGrade);
+		
+		return "redirect:/facultyhome/sectioncontent/classlist/studentgrades?sectionID="+ sectionID + "&studentID=" + assignmentStudentGrade.getStudentID();
 	}
 	
 	/*

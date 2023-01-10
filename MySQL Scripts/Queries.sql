@@ -10,8 +10,12 @@
 
 #select * from User where User.userID in (select Enroll.studentID from Enroll where Enroll.sectionID = 100)
 
-select Enroll.studentID 
-from Enroll, Section, Assignment 
-where Enroll.sectionID = Section.sectionID and 
-Section.sectionID = Assignment.sectionID and 
-Assignment.assignmentID = 1;
+# select Enroll.studentID 
+# from Enroll, Section, Assignment 
+# where Enroll.sectionID = Section.sectionID and 
+# Section.sectionID = Assignment.sectionID and 
+# Assignment.assignmentID = 1;
+
+# select * from AssignmentStudentGrade where AssignmentStudentGrade.assignmentID = 7 order by AssignmentStudentGrade.studentID
+
+select * from AssignmentStudentGrade where AssignmentStudentGrade.studentID = 201 and AssignmentStudentGrade.assignmentID in (select Assignment.assignmentID from Assignment where Assignment.sectionID = 53001)

@@ -19,6 +19,7 @@
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Classlist<span class="sr-only">(current)</span></a>
+		<a th:href="@{/studenthome/sectioncontent/sectiongrade(sectionID=${section.sectionID})}" class="nav-item nav-link active">Grades<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -27,6 +28,19 @@
     <main>
     	<div class="container">
     		<div class="row" style="margin-top: 50px;">
+    			<label class="form-check-label" for="assignmentname">Assignment Name</label>
+	    		<input type="text" th:field="${assignment.assignmentName}" class="form-control mb-2" placeholder="Assignment Name" readonly="readonly"> 
+	    			
+	    		<label class="form-check-label" for="assignmentDescription">Assignment Description</label>
+	    		<input type="text" th:field="${assignment.assignmentDescription}" class="form-control mb-2" placeholder="Assignment Description" readonly="readonly">  
+	    			
+	    		<label class="form-check-label" for="assignmentGrade">Assignment Grade</label>
+	    		<input type="number" th:field="${assignment.assignmentGrade}" class="form-control mb-2" placeholder="Desc" min="0" max="999" readonly="readonly">  
+    			
+    			<hr class="col-md-8 offset-md-2">
+
+
+    		
     			<div class="col-md-8 offset-md-2">
 	    			<p  class="h4 mb-4">Add a New Submission</p>
 	    		</div>
@@ -34,7 +48,7 @@
     						 th:object="${submission}" method="POST"  class="col-md-8 offset-md-2" > 
 	    			
 	    			<label class="form-check-label" for="submissionText">Submission Text</label>
-	    			<input type="text" th:field="*{submissionText}" class="form-control mb-2" placeholder="Answer" required> 
+	    			<textarea th:field="*{submissionText}" class="form-control mb-2" placeholder="Answer" rows="8" required ></textarea>
 	    			
 	    			<input type="hidden" th:field="*{studentID}">
 	    			<input type="hidden" th:field="*{assignmentID}">

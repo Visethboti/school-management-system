@@ -1,24 +1,24 @@
 USE school_management_system_db;
 
 INSERT INTO User (userID, password, firstName, lastName, address, age, sex, role, enabled)
-VALUES (11, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Visethboti", "Sin", "127 14th AVE S Suite 3A", 22, "M", "ROLE_ADMIN", 1),
-		(12, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Robert", "Duncan", "127 14th AVE S Suite 3A", 28, "M", "ROLE_ADMIN", 1),
-        (13, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Sarah", "Scarlett", "127 14th AVE S Suite 3A", 30, "F", "ROLE_ADMIN", 1),
-		(101, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Freddy", "Tillery", "127 14th AVE S Suite 3A", 45, "M", "ROLE_FACULTY", 1),
-        (102, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Leon", "Hopkins", "127 14th AVE S Suite 3A", 41, "M", "ROLE_FACULTY", 1),
-        (103, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Jose", "Mora", "127 14th AVE S Suite 3A", 48, "M", "ROLE_FACULTY", 1),
-        (104, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Zhiko", "Nedev", "127 14th AVE S Suite 3A", 55, "M", "ROLE_FACULTY", 1),
-        (105, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Thomas", "Caraham", "127 14th AVE S Suite 3A", 49, "M", "ROLE_FACULTY", 1),
-		(201, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Erin", "Wood", "127 14th AVE S Suite 3A", 20, "F", "ROLE_STUDENT", 1),
-        (202, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Emma", "Watt", "127 14th AVE S Suite 3A", 21, "F", "ROLE_STUDENT", 1),
-        (203, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Matthew", "Murphy", "127 14th AVE S Suite 3A", 24, "M", "ROLE_STUDENT", 1),
-        (204, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Cody", "Luna", "127 14th AVE S Suite 3A", 25, "M", "ROLE_STUDENT", 1),
-        (205, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Edward", "Simpson", "127 14th AVE S Suite 3A", 19, "M", "ROLE_STUDENT", 1),
-        (206, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Oliver", "Decker", "127 14th AVE S Suite 3A", 20, "M", "ROLE_STUDENT", 1),
-        (207, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Kale", "Barlow", "127 14th AVE S Suite 3A", 25, "M", "ROLE_STUDENT", 1),
-        (208, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Zara", "Kelly", "127 14th AVE S Suite 3A", 21, "f", "ROLE_STUDENT", 1),
-        (209, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Alicia", "Berg", "127 14th AVE S Suite 3A", 26, "F", "ROLE_STUDENT", 1),
-        (210, "{bcrypt}$2a$10$VtqsdHpo9UjpHa6JDkNSuOXMqruBKfyKBvD3i2sAE1twdTdFPyqee", "Lucas", "Booth", "127 14th AVE S Suite 3A", 28, "M", "ROLE_STUDENT", 1);
+VALUES (11, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Visethboti", "Sin", "127 14th AVE S Suite 3A", 22, "M", "ROLE_ADMIN", 1),
+		(12, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Robert", "Duncan", "127 14th AVE S Suite 3A", 28, "M", "ROLE_ADMIN", 1),
+        (13, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Sarah", "Scarlett", "127 14th AVE S Suite 3A", 30, "F", "ROLE_ADMIN", 1),
+		(101, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Freddy", "Tillery", "127 14th AVE S Suite 3A", 45, "M", "ROLE_FACULTY", 1),
+        (102, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Leon", "Hopkins", "127 14th AVE S Suite 3A", 41, "M", "ROLE_FACULTY", 1),
+        (103, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Jose", "Mora", "127 14th AVE S Suite 3A", 48, "M", "ROLE_FACULTY", 1),
+        (104, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Zhiko", "Nedev", "127 14th AVE S Suite 3A", 55, "M", "ROLE_FACULTY", 1),
+        (105, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Thomas", "Caraham", "127 14th AVE S Suite 3A", 49, "M", "ROLE_FACULTY", 1),
+		(201, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Erin", "Wood", "127 14th AVE S Suite 3A", 20, "F", "ROLE_STUDENT", 1),
+        (202, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Emma", "Watt", "127 14th AVE S Suite 3A", 21, "F", "ROLE_STUDENT", 1),
+        (203, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Matthew", "Murphy", "127 14th AVE S Suite 3A", 24, "M", "ROLE_STUDENT", 1),
+        (204, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Cody", "Luna", "127 14th AVE S Suite 3A", 25, "M", "ROLE_STUDENT", 1),
+        (205, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Edward", "Simpson", "127 14th AVE S Suite 3A", 19, "M", "ROLE_STUDENT", 1),
+        (206, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Oliver", "Decker", "127 14th AVE S Suite 3A", 20, "M", "ROLE_STUDENT", 1),
+        (207, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Kale", "Barlow", "127 14th AVE S Suite 3A", 25, "M", "ROLE_STUDENT", 1),
+        (208, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Zara", "Kelly", "127 14th AVE S Suite 3A", 21, "f", "ROLE_STUDENT", 1),
+        (209, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Alicia", "Berg", "127 14th AVE S Suite 3A", 26, "F", "ROLE_STUDENT", 1),
+        (210, "$2a$10$2XodGzQF21NLlD/1CD11rO9iVjdv5ejSxN2Iks4Jur2aM01Bkw/uq", "Lucas", "Booth", "127 14th AVE S Suite 3A", 28, "M", "ROLE_STUDENT", 1);
 
 INSERT INTO Admin (adminID)
 values (11),

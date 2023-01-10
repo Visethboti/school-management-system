@@ -95,4 +95,14 @@ public class AssignmentStudentGradeServiceImpl implements AssignmentStudentGrade
 	public List<AssignmentStudentGrade> findAllByAssignmentID(int assigmentID) {
 		return assignmentStudentGradeRepository.findAllByAssignmentID(assigmentID);
 	}
+	
+	@Override
+	public List<AssignmentStudentGrade> findAllBySectionIDAndStudentID(int sectionID, int studentID) {
+		return assignmentStudentGradeRepository.findAllBySectionIDAndStudentID(sectionID, studentID);
+	}
+	
+	@Override
+	public AssignmentStudentGrade findByAssignmentIDAndStudentID(int assignmentID, int studentID) {
+		return assignmentStudentGradeRepository.findByAssignmentIDAndStudentID(assignmentID, studentID);
+	}
 }

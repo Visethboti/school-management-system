@@ -19,6 +19,7 @@
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent(sectionID=${section.sectionID})}" class="nav-item nav-link active">Section Home<span class="sr-only">(current)</span></a>
 			<a th:href="@{/studenthome/sectioncontent/classlist(sectionID=${section.sectionID})}" class="nav-item nav-link active">Classlist<span class="sr-only">(current)</span></a>
+			<a th:href="@{/studenthome/sectioncontent/sectiongrade(sectionID=${section.sectionID})}" class="nav-item nav-link active">Grades<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -26,21 +27,35 @@
   <body>
     <main>
     	<div class="container">
-    		<div class = row style="margin-top: 50px;">
+    		<div style="margin-top: 50px;">
     			<label class="form-check-label" for="assignmentname">Assignment Name</label>
 	    		<input type="text" th:field="${assignment.assignmentName}" class="form-control mb-2" placeholder="Assignment Name" readonly="readonly"> 
 	    			
 	    		<label class="form-check-label" for="assignmentDescription">Assignment Description</label>
 	    		<input type="text" th:field="${assignment.assignmentDescription}" class="form-control mb-2" placeholder="Assignment Description" readonly="readonly">  
 	    			
-	    		<label class="form-check-label" for="assignmentGrade">Assignment Grade</label>
-	    		<input type="number" th:field="${assignment.assignmentGrade}" class="form-control mb-2" placeholder="Desc" min="0" max="999" readonly="readonly">  
-    			
     			<hr class="col-md-8 offset-md-2">
     			
-    			<a th:href="@{/studenthome/sectioncontent/submissions/addsubmission(assignmentID=${assignment.assignmentID})}" 
-	    		class="btn btn-primary btn-lg btn-dark mb-2">Add New Submission</a>
-    			<div class="col-md-8 offset-md-4">
+    			<div class="row justify-content-between">
+    				<div class="col-4">
+	    				<a th:href="@{/studenthome/sectioncontent/submissions/addsubmission(assignmentID=${assignment.assignmentID})}" 
+			    		class="btn btn-primary btn-lg btn-dark mb-2">Add New Submission</a>
+    				</div>
+    				
+    				<div class="col-2">
+	    				<div class="row">
+			    			<div class="col px-0">
+			    				<label class="form-check-label h4" for="assignmentGrade">Grade:</label>
+			    			</div>
+			    			<div class="col px-0">
+			    				<span class="h4" th:text="${assignmentStudentGrade.assignmentStudentGrade} + '/' + ${assignment.assignmentGrade}"></span>
+			    			</div>
+			    		</div>
+    				</div>
+    			</div>
+    			
+	    		
+    			<div class="row justify-content-center">
 		    		<p  class="h4 mb-2">List of Submissions</p>
 		    	</div>
     			
@@ -50,7 +65,6 @@
 		    			<tr>
 		    				<th>Submission ID</th>
 		    				<th>Submission Text</th>
-		    				<th>Submission Grade</th>
 		    				<th>Submission Date</th>
 		    			</tr>
 		    		</thead>
@@ -58,7 +72,6 @@
 		    			<tr th:each="tempSubmission: ${submissions}">
 		    				<td th:text="${tempSubmission.submissionID}"/>
 		    				<td th:text="${tempSubmission.submissionText}"/>
-		    				<td th:text="${tempSubmission.submissionGrade}"/>
 		    				<td th:text="${tempSubmission.submissionDate}"/>
 		    			</tr>
 		    		</tbody>

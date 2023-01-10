@@ -24,8 +24,8 @@
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
   </nav>
   <body>
-    <main>
-    	<div class="container">
+    <main class="mx-5">
+    	<div class="container-fluid">
     		<div class = row style="margin-top: 50px;">
 	    		<div>
 		    		<p  class="h4 mb-2">List of Student Submissions</p>
@@ -54,7 +54,7 @@
 						    				<th>Submission ID</th>
 						    				<th>Submission Text</th>
 						    				<th>Submission Date</th>
-						    				<th>Submission Grade</th>	
+						    				<!-- <th>Submission Grade</th>	-->
 						    			</tr>
 						    		</thead>
 						    		<tbody>
@@ -62,9 +62,12 @@
 						    				<td th:text="${tempSubmission.submissionID}"/>
 			    							<td th:text="${tempSubmission.submissionText}"/>
 			    							<td th:text="${tempSubmission.submissionDate}"/>
+			    							<!-- 
 			    							<td>
+			    								
 			    									<form action="#" th:action="@{/facultyhome/sectioncontent/submissions/addgrade(assignmentID=${tempSubmission.assignmentID})}"
 							    						 th:object="${tempSubmission}" method="POST">
+							    				
 							    						<input type="text" th:value="*{submissionGrade}"name="submissionGrade" id="submissionGrade" required>
 							    						<input type="hidden" th:value="*{submissionID}"name="submissionID" id="submissionID">
 							    						<input type="hidden" th:value="*{studentID}"name="studentID" id="studentID"> 
@@ -73,8 +76,9 @@
 							    						<input type="hidden" th:value="*{submissionDate}"name="submissionDate" id="submissionDate"> 
 							    						<button type="submit"class="btn btn-secondary btn-sm">Save</button> 
 							    					</form>
+							    				
 			    							</td>
-			    							
+			    							-->
 						    			</tr>
 						    		</tbody>
 						    	</table>
@@ -84,9 +88,13 @@
 							    	th:object="${assignmentStudentGradeList[iterStat.index]}" method="POST">
 		    						<input type="number" th:value="${assignmentStudentGradeList[iterStat.index].assignmentStudentGrade}"
 		    							name="assignmentStudentGrade" id="assignmentStudentGrade" th:max="${assignment.assignmentGrade}" style="width:80px;">
+		    						
 		    						<span th:text="'/' + ${assignment.assignmentGrade}"></span>
+		    						
 		    						<input type="hidden" th:value="${assignmentStudentGradeList[iterStat.index].studentID}"name="studentID" id="studentID"> 
+		    						
 		    						<input type="hidden" th:value="${assignmentStudentGradeList[iterStat.index].assignmentID}"name="assignmentID" id="assignmentID"> 
+			    					
 			    					<button type="submit"class="btn btn-secondary btn-sm">Save</button> 
 		    					</form>
 		    				</td>

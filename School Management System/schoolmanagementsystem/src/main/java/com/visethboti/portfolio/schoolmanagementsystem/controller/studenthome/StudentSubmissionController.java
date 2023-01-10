@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Assignment;
+import com.visethboti.portfolio.schoolmanagementsystem.entity.AssignmentStudentGrade;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Section;
 import com.visethboti.portfolio.schoolmanagementsystem.entity.Submission;
 import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentService;
+import com.visethboti.portfolio.schoolmanagementsystem.service.AssignmentStudentGradeService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SectionService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.SubmissionService;
 
@@ -29,14 +31,17 @@ public class StudentSubmissionController {
 	private SectionService sectionService;
 	private SubmissionService submissionService;
 	private AssignmentService assignmentService;
+	private AssignmentStudentGradeService assignmentStudentGradeService;
 	
 	@Autowired
 	public StudentSubmissionController(@Qualifier("sectionServiceImpl") SectionService sectionService,
 											@Qualifier("submissionServiceImpl") SubmissionService submissionService,
-											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService) {
+											@Qualifier("assignmentServiceImpl") AssignmentService assignmentService,
+											AssignmentStudentGradeService assignmentStudentGradeService) {
 		this.sectionService = sectionService;
 		this.submissionService = submissionService;
 		this.assignmentService = assignmentService;
+		this.assignmentStudentGradeService = assignmentStudentGradeService;
 	}
 	
 	@GetMapping("")
@@ -46,10 +51,12 @@ public class StudentSubmissionController {
 		Assignment assignment = assignmentService.findById(theAssignmentID);
 		Section section = sectionService.findById(assignment.getSectionID());
 		List<Submission> submissions = submissionService.findAllByAssignmentIDAndStudentID(theAssignmentID, Integer.parseInt(authentication.getName()));	
+		AssignmentStudentGrade assignmentStudentGrade = assignmentStudentGradeService.findByAssignmentIDAndStudentID(theAssignmentID, Integer.parseInt(authentication.getName()));
 		
 		theModel.addAttribute("section", section);
 		theModel.addAttribute("assignment", assignment);
 		theModel.addAttribute("submissions", submissions);
+		theModel.addAttribute("assignmentStudentGrade", assignmentStudentGrade);
 		
 		return "/student-home/submissions";
 	}
