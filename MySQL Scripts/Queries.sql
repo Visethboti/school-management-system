@@ -1,3 +1,5 @@
+USE school_management_system_db;
+
 #select * from Teach, Section where Teach.facultyID = 2 && Teach.sectionID = Section.sectionID
 
 # get all from teach where the specific facultyID is, and this teach exist in the table Section
@@ -18,4 +20,6 @@
 
 # select * from AssignmentStudentGrade where AssignmentStudentGrade.assignmentID = 7 order by AssignmentStudentGrade.studentID
 
-select * from AssignmentStudentGrade where AssignmentStudentGrade.studentID = 201 and AssignmentStudentGrade.assignmentID in (select Assignment.assignmentID from Assignment where Assignment.sectionID = 53001)
+# select * from AssignmentStudentGrade where AssignmentStudentGrade.studentID = 201 and AssignmentStudentGrade.assignmentID in (select Assignment.assignmentID from Assignment where Assignment.sectionID = 53001)
+
+SELECT * FROM User ORDER BY User.userID LIMIT 10,5; 
