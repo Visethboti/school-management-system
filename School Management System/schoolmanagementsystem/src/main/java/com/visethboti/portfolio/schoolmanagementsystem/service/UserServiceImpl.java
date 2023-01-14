@@ -161,4 +161,23 @@ public class UserServiceImpl implements UserService {
 	public List<User> findStudentsEnrollBySectionID(int theSectionID) {
 		return userRepository.findAllStudentsEnrollBySectionID(theSectionID);
 	}
+	
+	@Override
+	public List<User> findAllByBatchOfTenAndSearch(int userIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return userRepository.findAllByBatchOfTen(userIndex);
+		else {
+			if(searchKey.matches("[0-9.]+")) {
+				return userRepository.findAllByBatchOfTenAndSearch(userIndex, Integer.valueOf(searchKey) , "'%" + searchKey + "%'");
+			}
+			else {
+				
+				searchKey = "%" + searchKey + "%";
+				return userRepository.findAllByBatchOfTenAndSearch(userIndex, 0 , searchKey);
+			}
+				
+		}
+			
+			
+	}
 }

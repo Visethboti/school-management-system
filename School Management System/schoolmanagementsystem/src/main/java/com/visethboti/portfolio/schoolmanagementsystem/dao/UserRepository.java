@@ -18,6 +18,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query(nativeQuery=true, value="select * from User where User.role = 'ROLE_FACULTY' and User.userID not in (select Teach.facultyID from Teach where Teach.sectionID = ?1)")
 	List<User> findAllFacultyNotAssignBySectionID(int theSectionID);
+	
+	@Query(nativeQuery=true, value="select * from User order by User.userID limit ?1,5")
+	public List<User> findAllByBatchOfTen(int userIndex);
+	
+	@Query(nativeQuery=true, value="select * from User where User.userID = ?2 or User.firstName like ?3 or User.lastName like ?3 order by User.userID limit ?1,5")
+	public List<User> findAllByBatchOfTenAndSearch(int userIndex, int searchID, String searchKey);
 }
 
 

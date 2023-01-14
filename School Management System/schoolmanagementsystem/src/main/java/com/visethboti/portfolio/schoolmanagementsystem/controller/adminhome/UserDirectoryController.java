@@ -26,12 +26,15 @@ public class UserDirectoryController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listAllUsers(Model theModel) {
-		// get all Users
-		List<User> Users = userService.findAll();
+	public String listAllUsers(Model theModel, @RequestParam("userIndex") int userIndex,
+			@RequestParam("search") String search) {
+		
+		List<User> Users = userService.findAllByBatchOfTenAndSearch(userIndex, search); 
 		
 		// add to the Spring MVC model
 		theModel.addAttribute("users", Users);
+		theModel.addAttribute("userIndex", userIndex);
+		theModel.addAttribute("search", search);
 		
 		return "/admin-home/user-directory";
 	}

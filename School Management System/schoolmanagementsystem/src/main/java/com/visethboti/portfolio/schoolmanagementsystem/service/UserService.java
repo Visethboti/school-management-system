@@ -18,4 +18,6 @@ public interface UserService {
 	public List<User> findAllFacultyNotAssignInSection(int theSectionID);
 	
 	public List<User> findStudentsEnrollBySectionID(int theSectionID);
+	
+	public List<User> findAllByBatchOfTenAndSearch(int userIndex, String searchKey);
 }

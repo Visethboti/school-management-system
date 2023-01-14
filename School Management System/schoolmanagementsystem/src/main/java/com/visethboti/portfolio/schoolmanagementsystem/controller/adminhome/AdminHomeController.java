@@ -15,10 +15,10 @@ public class AdminHomeController {
 	}
 	
 	
-	@GetMapping(value={"/**"})
+	/*@GetMapping(value={"/**"})
 	public String redirectToHomePage() {
 		
 		return "redirect:/";
 	}
-	
+	*/
 }
