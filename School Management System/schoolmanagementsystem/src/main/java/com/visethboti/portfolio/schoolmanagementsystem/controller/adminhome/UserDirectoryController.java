@@ -53,10 +53,11 @@ public class UserDirectoryController {
 	@PostMapping("/save")
 	public String processSaveUser(@ModelAttribute("User") User theUser) {
 		// save User
+		System.out.println("------------ 888888888888 --------------- " + theUser.getEnabled());
 		userService.save(theUser);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/userdirectory";
+		return "redirect:/adminhome/userdirectory?userIndex=0&search=";
 	}
 	
 	@GetMapping("/update")
@@ -68,6 +69,6 @@ public class UserDirectoryController {
 	@GetMapping("/delete")
 	public String processUpdateUser(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
-		return "redirect:/adminhome/userdirectory";
+		return "redirect:/adminhome/userdirectory?userIndex=0&search=";
 	}
 }

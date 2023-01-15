@@ -24,6 +24,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query(nativeQuery=true, value="select * from User where User.userID = ?2 or User.firstName like ?3 or User.lastName like ?3 order by User.userID limit ?1,5")
 	public List<User> findAllByBatchOfTenAndSearch(int userIndex, int searchID, String searchKey);
+	
+	@Query(nativeQuery=true, value="select * from User where User.role = ?2 order by User.userID limit ?1,5")
+	public List<User> findAllByBatchOfTenByUserRole(int userIndex, String userRole);
+	
+	@Query(nativeQuery=true, value="select * from User where User.role = ?4 and User.userID = ?2 or User.firstName like ?3 or User.lastName like ?3 order by User.userID limit ?1,5")
+	public List<User> findAllByBatchOfTenAndSearchByUserRole(int userIndex,  int searchID, String searchKey, String userRole);
+
 }
 
 

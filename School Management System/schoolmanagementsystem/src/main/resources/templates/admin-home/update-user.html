@@ -57,21 +57,7 @@
 		    			</div>
 	    			</div>
 	    			
-	    			<label class="form-check-label">User Role</label>
-	    			<div class="form-control mb-2">
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_STUDENT" id="role_student" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_student">Student</label>
-	    				</div>
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_FACULTY" id="role_faculty" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_faculty">Faculty</label>
-	    				</div>
-	    				<div class="form-check form-check-inline">
-	    					<input type="radio" th:field="*{role}" th:value="ROLE_ADMIN" id="role_admin" class="form-check-input" required/>
-					    	<label class="form-check-label" for="role_admin">Admin</label>
-	    				</div>
-	    			</div>
+	    			<input type="hidden" th:field="*{role}" id="role_student" class="form-check-input" required/>
 	    			
 	    			<label class="form-check-label" for="password">Password</label>
 	    			<input type="password" id="password" th:field="*{password}" class="form-control mb-2" placeholder="Note: The old password will be kept if this is left empty">
@@ -79,9 +65,13 @@
 	    			<label class="form-check-label" for="enableuser">Activate User</label>
 	    			<div class="form-control mb-2">
 	    				<div class="form-check form-check-inline">
-	    					<input type="checkbox" th:field="*{enabled}" th:value="1" id="enabled" class="form-check-input" required/>
+	    					<input type="radio" th:field="*{enabled}" th:value="1" id="enabled" class="form-check-input"/>
 					    	<label class="form-check-label" for="enabled">Enable</label>
 	    				</div>
+		    			<div class="form-check form-check-inline">
+			    			<input type="radio" th:field="*{enabled}" th:value="0" id="enabled" class="form-check-input"/>
+						    <label class="form-check-label" for="enabled">Disable</label>
+		    			</div>
 	    			</div>
 	    			
 	    			<button type="submit" class="btn btn-secondary btn-lg btn-block">Save</button> 
@@ -90,7 +80,7 @@
 	    		
 	    		<hr class="col-md-8 offset-md-2">
 	    		<div class="col-md-8 offset-md-2">
-	    			<a th:href="@{/adminhome/userdirectory}" class="btn btn-secondary btn-lg">Back to User Directory</a>
+	    			<a th:href="@{/adminhome/userdirectory?userIndex=0&search=}" class="btn btn-secondary btn-lg">Back to User Directory</a>
 	    		</div>
     		</div>	
     	</div>

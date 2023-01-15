@@ -65,9 +65,13 @@
 	    			<label class="form-check-label" for="enableuser">Activate User</label>
 	    			<div class="form-control mb-2">
 	    				<div class="form-check form-check-inline">
-	    					<input type="checkbox" th:field="*{enabled}" th:value="1" id="enabled" class="form-check-input"/>
+	    					<input type="radio" th:field="*{enabled}" th:value="1" id="enabled" class="form-check-input"/>
 					    	<label class="form-check-label" for="enabled">Enable</label>
 	    				</div>
+		    			<div class="form-check form-check-inline">
+			    			<input type="radio" th:field="*{enabled}" th:value="0" id="enabled" class="form-check-input"/>
+						    <label class="form-check-label" for="enabled">Disable</label>
+		    			</div>
 	    			</div>
 	    			
 	    			<button type="submit" class="btn btn-secondary btn-lg btn-block">Save</button> 
@@ -76,7 +80,7 @@
 	    		
 	    		<hr class="col-md-8 offset-md-2">
 	    		<div class="col-md-8 offset-md-2">
-	    			<a th:href="@{/adminhome/userdirectory/admindirectory/}" class="btn btn-secondary btn-lg">Back to Admin User Directory</a>
+	    			<a th:href="@{/adminhome/userdirectory/admindirectory?userIndex=0&search=}" class="btn btn-secondary btn-lg">Back to Admin User Directory</a>
 	    		</div>
     		</div>	
     		

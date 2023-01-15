@@ -26,12 +26,14 @@ public class AdminDirectoryController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listAdmins(Model theModel) {
-		// get all Students
-		List<User> adminUser = userService.findAllAdmin();
+	public String listAdmins(Model theModel, @RequestParam("userIndex") int userIndex,
+			@RequestParam("search") String search) {
 		
-		// add to the Spring MVC model
+		List<User> adminUser = userService.findAllByBatchOfTenAndSearchByUserRole(userIndex, search, "ROLE_FACULTY"); 
+		
 		theModel.addAttribute("users", adminUser);
+		theModel.addAttribute("userIndex", userIndex);
+		theModel.addAttribute("search", search);
 		
 		return "/admin-home/admin-directory";
 	}
@@ -54,7 +56,7 @@ public class AdminDirectoryController {
 		
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/userdirectory/admindirectory";
+		return "redirect:/adminhome/userdirectory/admindirectory?userIndex=0&search=";
 	}
 	
 	@GetMapping("/update")
@@ -66,6 +68,6 @@ public class AdminDirectoryController {
 	@GetMapping("/delete")
 	public String processDeleteAdmin(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
-		return "redirect:/adminhome/userdirectory/admindirectory";
+		return "redirect:/adminhome/userdirectory/admindirectory?userIndex=0&search=";
 	}
 }

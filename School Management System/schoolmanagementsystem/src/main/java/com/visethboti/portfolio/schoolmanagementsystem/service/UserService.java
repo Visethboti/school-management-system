@@ -20,4 +20,5 @@ public interface UserService {
 	public List<User> findStudentsEnrollBySectionID(int theSectionID);
 	
 	public List<User> findAllByBatchOfTenAndSearch(int userIndex, String searchKey);
+	public List<User> findAllByBatchOfTenAndSearchByUserRole(int userIndex, String searchKey, String userRole);
 }

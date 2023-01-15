@@ -176,8 +176,25 @@ public class UserServiceImpl implements UserService {
 				return userRepository.findAllByBatchOfTenAndSearch(userIndex, 0 , searchKey);
 			}
 				
-		}
-			
-			
+		}	
 	}
+	
+	@Override
+	public List<User> findAllByBatchOfTenAndSearchByUserRole(int userIndex, String searchKey, String userRole) {
+		if(searchKey.isEmpty())
+			return userRepository.findAllByBatchOfTenByUserRole(userIndex, userRole);
+		else {
+			if(searchKey.matches("[0-9.]+")) {
+				searchKey = "%" + searchKey + "%";
+				return userRepository.findAllByBatchOfTenAndSearchByUserRole(userIndex, Integer.valueOf(searchKey), searchKey, userRole);
+			}
+			else {
+				
+				searchKey = "%" + searchKey + "%";
+				return userRepository.findAllByBatchOfTenAndSearchByUserRole(userIndex, 0 , searchKey, userRole);
+			}
+				
+		}	
+	}
+
 }

@@ -18,9 +18,9 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
-			<a th:href="@{userdirectory/studentdirectory}" class="nav-item nav-link active">Student User Directory<span class="sr-only">(current)</span></a>
-			<a th:href="@{userdirectory/facultydirectory}" class="nav-item nav-link active">Faculty User Directory<span class="sr-only">(current)</span></a>
-			<a th:href="@{userdirectory/admindirectory}" class="nav-item nav-link active">Admin User Directory<span class="sr-only">(current)</span></a>
+			<a th:href="@{userdirectory/studentdirectory?userIndex=0&search=}" class="nav-item nav-link active">Student User Directory<span class="sr-only">(current)</span></a>
+			<a th:href="@{userdirectory/facultydirectory?userIndex=0&search=}" class="nav-item nav-link active">Faculty User Directory<span class="sr-only">(current)</span></a>
+			<a th:href="@{userdirectory/admindirectory?userIndex=0&search=}" class="nav-item nav-link active">Admin User Directory<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>

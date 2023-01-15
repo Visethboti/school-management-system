@@ -26,12 +26,14 @@ public class FacultyDirectoryController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listFaculty(Model theModel) {
-		// get all Students
-		List<User> facultyUser = userService.findAllFaculty();
+	public String listFaculty(Model theModel, @RequestParam("userIndex") int userIndex,
+			@RequestParam("search") String search) {
+
+		List<User> facultyUser = userService.findAllByBatchOfTenAndSearchByUserRole(userIndex, search, "ROLE_FACULTY"); 
 		
-		// add to the Spring MVC model
 		theModel.addAttribute("users", facultyUser);
+		theModel.addAttribute("userIndex", userIndex);
+		theModel.addAttribute("search", search);
 		
 		return "/admin-home/faculty-directory";
 	}
@@ -54,7 +56,7 @@ public class FacultyDirectoryController {
 		
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/userdirectory/facultydirectory";
+		return "redirect:/adminhome/userdirectory/facultydirectory?userIndex=0&search=";
 	}
 	
 	@GetMapping("/update")
@@ -66,6 +68,6 @@ public class FacultyDirectoryController {
 	@GetMapping("/delete")
 	public String processUpdateFaculty(@RequestParam("userID") int theID) {
 		userService.deleteById(theID);
-		return "redirect:/adminhome/userdirectory/facultydirectory";
+		return "redirect:/adminhome/userdirectory/facultydirectory?userIndex=0&search=";
 	}
 }
