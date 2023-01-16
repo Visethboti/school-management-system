@@ -31,13 +31,16 @@ public class SectionsController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listSections(@RequestParam("courseID") int theID, Model theModel) {
-		// get all Sections for this course
-		List<Section> Sections = sectionService.findAllByCourseID(theID);
+	public String listSections(@RequestParam("courseID") int courseID, Model theModel, @RequestParam("sectionIndex") int sectionIndex,
+			@RequestParam("search") String search) {
 		
-		// add to the Spring MVC model
-		theModel.addAttribute("sections", Sections);
-		theModel.addAttribute("courseID", theID);
+		// get all Sections for this course
+		List<Section> sections = sectionService.findAllByCourseIDBatchOfTenAndSearch(courseID, sectionIndex, search);
+		
+		theModel.addAttribute("sections", sections);
+		theModel.addAttribute("courseID", courseID);
+		theModel.addAttribute("sectionIndex", sectionIndex);
+		theModel.addAttribute("search", search);
 		
 		return "/admin-home/section-list";
 	}
@@ -61,7 +64,7 @@ public class SectionsController {
 		sectionService.save(theSection);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections?courseID="+theSection.getCourseID();
+		return "redirect:/adminhome/coursedirectory/sections?courseID="+theSection.getCourseID()+"&sectionIndex=0&search=";
 	}
 	
 	@GetMapping("/update")
@@ -74,6 +77,6 @@ public class SectionsController {
 	@GetMapping("/delete")
 	public String processUpdateSection(@RequestParam("sectionID") int theID, @RequestParam("courseID") int courseID) {
 		sectionService.deleteById(theID);
-		return "redirect:/adminhome/coursedirectory/sections?courseID="+courseID;
+		return "redirect:/adminhome/coursedirectory/sections?courseID="+courseID+"&sectionIndex=0&search=";
 	}
 }

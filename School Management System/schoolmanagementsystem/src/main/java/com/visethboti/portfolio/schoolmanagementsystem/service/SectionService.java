@@ -14,4 +14,6 @@ public interface SectionService {
 	public void deleteAllByCourseID(int theCourseID);
 	public List<Section> findSectionsByStudentIDEnroll(int theStudentID);
 	public List<Section> findSectionsByFacultyIDTeach(int theFacultyID);
+	
+	public List<Section> findAllByCourseIDBatchOfTenAndSearch(int courseID, int sectionIndex, String searchKey);
 }

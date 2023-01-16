@@ -29,14 +29,15 @@
     		
     		<div class="row mb-4">
     			<div class="col">
-					<a th:href="@{/adminhome/coursedirectory/addcourse}" class="btn btn-primary btn-lg btn-dark mb-4">Add New Course</a>    			</div>
+					<a th:href="@{/adminhome/coursedirectory/addcourse}" class="btn btn-primary btn-lg btn-dark mb-4">Add New Course</a>
+				</div>
     			<div class="col d-flex justify-content-around">
     				<div class="row d-flex">
     					<div class="col">
-    						<a th:href="@{coursedirectory(courseIndex=${courseIndex}-5, search=${search})}" th:if="${courseIndex} > 0" class="btn btn-primary btn-lg btn-dark">Previous</a>
+    						<a th:href="@{coursedirectory(courseIndex=${courseIndex}-10, search=${search})}" th:if="${courseIndex} > 0" class="btn btn-primary btn-lg btn-dark">Previous</a>
     					</div>
     					<div class="col">
-    						<a th:href="@{coursedirectory(courseIndex=${courseIndex}+5,  search=${search})}" th:if="${courses.size} == 5"class="btn btn-primary btn-lg btn-dark">Next</a>
+    						<a th:href="@{coursedirectory(courseIndex=${courseIndex}+10,  search=${search})}" th:if="${courses.size} == 5"class="btn btn-primary btn-lg btn-dark">Next</a>
     					</div>
     				</div>
     				
@@ -67,7 +68,7 @@
 	    				<td th:text="${tempCourse.courseCredit}"/>
 	    				<td th:text="${tempCourse.courseDescription}"/>
 	    				<td>
-	    					<a th:href="@{/adminhome/coursedirectory/sections(courseID=${tempCourse.courseID})}" class="btn btn-primary btn-sm">
+	    					<a th:href="@{/adminhome/coursedirectory/sections(courseID=${tempCourse.courseID}, sectionIndex=0, search=)}" class="btn btn-primary btn-sm">
 	    						List Course Sections
 	    					</a>
 	    					<a th:href="@{/adminhome/coursedirectory/update(courseID=${tempCourse.courseID})}" class="btn btn-info btn-sm">

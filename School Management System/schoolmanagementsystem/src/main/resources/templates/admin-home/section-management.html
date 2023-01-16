@@ -18,7 +18,7 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
-			<a th:href="@{/adminhome/coursedirectory/sections(courseID=${courseID})}" class="nav-item nav-link active">Section List<span class="sr-only">(current)</span></a>
+			<a th:href="@{/adminhome/coursedirectory/sections(courseID=${courseID}, sectionIndex=0, search=)}" class="nav-item nav-link active">Section List<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -32,6 +32,10 @@
 	    		<div class="col-md-8 offset-md-2">
 		    		<p  class="h4 mb-4">List of Enrolled Students</p>
 		    	</div>
+		    	
+		    	
+		    	
+		    	
 		    	<table class="table table-bordered table-striped">
 		    		<thead class="thead-dark">
 		    			<tr>
@@ -87,7 +91,7 @@
 		    		</tbody>
 		    	</table>
 		    	<div >
-		    		<a th:href="@{/adminhome/coursedirectory/sections(courseID=${courseID})}" 
+		    		<a th:href="@{/adminhome/coursedirectory/sections(courseID=${courseID}, sectionIndex=0, search=)}" 
 		    		class="btn btn-secondary btn-lg">Back to Section List</a>
 		    	</div>
     		</div>

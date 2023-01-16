@@ -17,4 +17,10 @@ public interface SectionRepository extends JpaRepository<Section, Integer> {
 	public List<Section> findAllSectionsEnrollByStudentID(int theStudentID);
 	
 	public void deleteAllByCourseIDEquals(int theCourseID);
+	
+	@Query(nativeQuery=true, value="select * from Section where Section.courseID = ?1 order by Section.sectionID limit ?2,10")
+	public List<Section> findAllByCourseIDBatchOfTen(int courseID, int sectionIndex);
+	
+	@Query(nativeQuery=true, value="select * from Section where Section.courseID = ?1 and Section.sectionID like ?3 order by Section.courseID limit ?2,10")
+	public List<Section> findAllByCourseIDBatchOfTenAndSearch(int courseID, int sectionIndex, String search);
 }

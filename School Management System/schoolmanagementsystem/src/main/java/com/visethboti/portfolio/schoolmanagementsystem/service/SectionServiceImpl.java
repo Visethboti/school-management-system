@@ -70,4 +70,14 @@ public class SectionServiceImpl implements SectionService {
 	public List<Section> findSectionsByFacultyIDTeach(int theFacultyID) {
 		return sectionRepository.findAllSectionsTeachByFacultyID(theFacultyID);
 	}
+	
+	@Override
+	public List<Section> findAllByCourseIDBatchOfTenAndSearch(int courseID, int sectionIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return sectionRepository.findAllByCourseIDBatchOfTen(courseID, sectionIndex);
+		else {
+			searchKey = "%" + searchKey + "%";
+			return sectionRepository.findAllByCourseIDBatchOfTenAndSearch(courseID, sectionIndex, searchKey);
+		}	
+	}
 }
