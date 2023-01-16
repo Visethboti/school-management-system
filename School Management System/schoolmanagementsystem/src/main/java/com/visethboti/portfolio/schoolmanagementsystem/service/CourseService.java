@@ -9,4 +9,6 @@ public interface CourseService {
 	public Course findById(int theCourseID);
 	public void save(Course theCourse);
 	public void deleteById(int theCourseID);
+	
+	public List<Course>  findAllByBatchOfTenAndSearch(int courseIndex, String searchKey);
 }

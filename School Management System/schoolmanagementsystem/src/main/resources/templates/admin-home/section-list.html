@@ -18,7 +18,7 @@
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
 			<a th:href="@{/}" class="nav-item nav-link active">Home<span class="sr-only">(current)</span></a>
-			<a th:href="@{/adminhome/coursedirectory}" class="nav-item nav-link active">Course Directory<span class="sr-only">(current)</span></a>
+			<a th:href="@{/adminhome/coursedirectory?courseIndex=0&search=}" class="nav-item nav-link active">Course Directory<span class="sr-only">(current)</span></a>
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
@@ -55,7 +55,7 @@
 	    		</tbody>
 	    	</table>
 	    	<div >
-	    		<a th:href="@{/adminhome/coursedirectory}" class="btn btn-secondary btn-lg">Back to Course Directory</a>
+	    		<a th:href="@{/adminhome/coursedirectory?courseIndex=0&search=}" class="btn btn-secondary btn-lg">Back to Course Directory</a>
 	    	</div>
     	</div>
     </main>

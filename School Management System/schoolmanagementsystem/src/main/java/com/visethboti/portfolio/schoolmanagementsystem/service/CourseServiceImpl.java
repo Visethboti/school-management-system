@@ -51,4 +51,18 @@ public class CourseServiceImpl implements CourseService {
 		courseRepository.deleteById(theCourseID);
 	}
 
+	@Override
+	public List<Course> findAllByBatchOfTenAndSearch(int courseIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return courseRepository.findAllByBatchOfTen(courseIndex);
+		else {
+			if(searchKey.matches("[0-9.]+")) {
+				return courseRepository.findAllByBatchOfTenAndSearch(courseIndex, Integer.valueOf(searchKey), "%" + searchKey + "%");
+			}
+			else {
+				searchKey = "%" + searchKey + "%";
+				return courseRepository.findAllByBatchOfTenAndSearch(courseIndex, 0 , searchKey);
+			}
+		}	
+	}
 }

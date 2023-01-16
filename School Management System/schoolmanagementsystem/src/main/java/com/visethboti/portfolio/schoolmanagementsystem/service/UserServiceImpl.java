@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService {
 			return userRepository.findAllByBatchOfTen(userIndex);
 		else {
 			if(searchKey.matches("[0-9.]+")) {
-				return userRepository.findAllByBatchOfTenAndSearch(userIndex, Integer.valueOf(searchKey) , "'%" + searchKey + "%'");
+				return userRepository.findAllByBatchOfTenAndSearch(userIndex, Integer.valueOf(searchKey) , "%" + searchKey + "%");
 			}
 			else {
 				
@@ -185,8 +185,7 @@ public class UserServiceImpl implements UserService {
 			return userRepository.findAllByBatchOfTenByUserRole(userIndex, userRole);
 		else {
 			if(searchKey.matches("[0-9.]+")) {
-				searchKey = "%" + searchKey + "%";
-				return userRepository.findAllByBatchOfTenAndSearchByUserRole(userIndex, Integer.valueOf(searchKey), searchKey, userRole);
+				return userRepository.findAllByBatchOfTenAndSearchByUserRole(userIndex, Integer.valueOf(searchKey), "%" + searchKey + "%", userRole);
 			}
 			else {
 				

@@ -53,7 +53,6 @@ public class UserDirectoryController {
 	@PostMapping("/save")
 	public String processSaveUser(@ModelAttribute("User") User theUser) {
 		// save User
-		System.out.println("------------ 888888888888 --------------- " + theUser.getEnabled());
 		userService.save(theUser);
 		
 		// use a redirect to prevent duplicate submissions

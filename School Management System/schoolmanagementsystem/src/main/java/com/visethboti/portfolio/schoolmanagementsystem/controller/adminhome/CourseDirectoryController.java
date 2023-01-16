@@ -26,12 +26,15 @@ public class CourseDirectoryController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listCourses(Model theModel) {
-		// get all Courses
-		List<Course> Courses = courseService.findAll();
+	public String listCourses(Model theModel, @RequestParam("courseIndex") int courseIndex,
+			@RequestParam("search") String search) {
 		
-		// add to the Spring MVC model
+		// get all Courses
+		List<Course> Courses = courseService.findAllByBatchOfTenAndSearch(courseIndex, search);
+
 		theModel.addAttribute("courses", Courses);
+		theModel.addAttribute("courseIndex", courseIndex);
+		theModel.addAttribute("search", search);
 		
 		return "/admin-home/course-directory";
 	}
