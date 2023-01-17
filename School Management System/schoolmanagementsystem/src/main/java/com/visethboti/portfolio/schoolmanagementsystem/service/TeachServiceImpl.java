@@ -58,5 +58,13 @@ public class TeachServiceImpl implements TeachService {
 		teachRepository.deleteAllByFacultyIDEquals(theFacultyID);
 	}
 	
-	
+	@Override
+	public List<Teach> findAllBySectionIDBatchOfTenAndSearch(int sectionID, int facultyIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return teachRepository.findAllByCourseIDBatchOfTen(sectionID, facultyIndex);
+		else {
+			searchKey = "%" + searchKey + "%";
+			return teachRepository.findAllByCourseIDBatchOfTenAndSearch(sectionID, facultyIndex, searchKey);
+		}	
+	}
 }

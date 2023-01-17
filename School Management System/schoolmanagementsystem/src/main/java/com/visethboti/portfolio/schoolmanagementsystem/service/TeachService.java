@@ -14,4 +14,6 @@ public interface TeachService {
 	
 	public void deleteAllBySectionID(int theSectionID);
 	public void deleteAllByFacultyID(int theFacultyID);
+	
+	public List<Teach> findAllBySectionIDBatchOfTenAndSearch(int sectionID, int facultyIndex, String searchKey);
 }

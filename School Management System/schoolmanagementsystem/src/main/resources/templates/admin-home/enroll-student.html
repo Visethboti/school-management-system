@@ -26,34 +26,41 @@
     		<div class="row" style="margin-top: 50px;">
     			
     			<div class="col-md-8 offset-md-2">
-	    			<p  class="h4 mb-4">Course Info</p>
+	    			<p  class="h4">Course Info</p>
 	    		</div>
     			
 	    		<div class="col-md-8 offset-md-2">
-		    		<label class="form-check-label" for="courseid">Course ID</label>
-	    			<input type="text" th:field="${course.courseID}" class="form-control mb-2" placeholder="ID" readonly="readonly">  
-	    			
-	    			<label class="form-check-label" for="coursename">Course Name</label>
-	    			<input type="text" th:field="${course.courseName}" class="form-control mb-2" placeholder="Name" readonly="readonly"> 
-	    			
-	    			<label class="form-check-label" for="coursecredit">Course Credit</label>
-	    			<input type="text" th:field="${course.courseCredit}" class="form-control mb-2" placeholder="Credit" readonly="readonly">  
-	    			
+	    			<div class="row mb-2">
+	    				<div class="col">
+		    				<label class="form-check-label" for="courseid">Course ID</label>
+		    				<input type="text" th:field="${course.courseID}" class="form-control" placeholder="ID" readonly="readonly">  
+	    				</div>
+	    				<div class="col">
+	    					<label class="form-check-label" for="coursename">Course Name</label>
+	    					<input type="text" th:field="${course.courseName}" class="form-control" placeholder="Name" readonly="readonly"> 
+	    				</div>
+	    				<div class="col">
+	    					<label class="form-check-label" for="coursecredit">Course Credit</label>
+	    					<input type="text" th:field="${course.courseCredit}" class="form-control" placeholder="Credit" readonly="readonly"> 
+	    				</div>
+	    			</div>
+		    		
 	    			<label class="form-check-label" for="coursedes">Course Description</label>
-	    			<input type="text" th:field="${course.courseDescription}" class="form-control mb-2" placeholder="Desc" min="0" max="9999" readonly="readonly">  
+	    			<input type="text" th:field="${course.courseDescription}" class="form-control" placeholder="Desc" min="0" max="9999" readonly="readonly">  
+    			
+    				<p  class="h4 mt-4">Section Info</p>
+    				
+    				<div class="row">
+	    				<div class="col">
+		    				<label class="form-check-label" for="sectionid">Section ID</label>
+	    			<input type="text" th:field="${section.sectionID}" class="form-control" placeholder="ID" readonly="readonly">  
+	    				</div>
+	    				<div class="col">
+		    				<label class="form-check-label" for="academicyear">Academic Year</label>
+	    					<input type="text" th:field="${section.academicYear}" class="form-control" placeholder="Name" readonly="readonly">  
+	    				</div>
+	    			</div>
     			</div>
-    			
-    			<div class="col-md-8 offset-md-2">
-	    			<p  class="h4 mb-4">Section Info</p>
-	    		</div>
-    			
-	    		<div class="col-md-8 offset-md-2">
-		    		<label class="form-check-label" for="sectionid">Section ID</label>
-	    			<input type="text" th:field="${section.sectionID}" class="form-control mb-2" placeholder="ID" readonly="readonly">  
-	    			
-	    			<label class="form-check-label" for="academicyear">Academic Year</label>
-	    			<input type="text" th:field="${section.academicYear}" class="form-control mb-2" placeholder="Name" readonly="readonly"> 
-    			</div>	
 	    		
 	    		<hr class="col-md-8 offset-md-2">
 	    		
@@ -95,7 +102,7 @@
 	    		
 	    		<hr class="col-md-8 offset-md-2">
 	    		<div class="col-md-8 offset-md-2">
-	    			<a th:href="@{/adminhome/coursedirectory/sections/management(sectionID=${section.sectionID},courseID=${course.courseID})}" 
+	    			<a th:href="@{/adminhome/coursedirectory/sections/management(sectionID=${section.sectionID},courseID=${course.courseID}, studentIndex=0, studentSearch=)}" 
 	    			class="btn btn-secondary btn-lg">Back to Section Management</a>
 	    		</div>
     		</div>	

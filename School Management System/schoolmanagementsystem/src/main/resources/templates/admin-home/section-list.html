@@ -65,7 +65,7 @@
 	    				<td th:text="${tempSection.sectionID}"/>
 	    				<td th:text="${tempSection.academicYear}"/>
 	    				<td>
-	    					<a th:href="@{/adminhome/coursedirectory/sections/management(sectionID=${tempSection.sectionID},courseID=${tempSection.courseID}, studentIndex=0, studentSearch=)}" class="btn btn-primary btn-sm">
+	    					<a th:href="@{/adminhome/coursedirectory/sections/management(sectionID=${tempSection.sectionID},courseID=${tempSection.courseID}, studentIndex=0, studentSearch=, facultyIndex=0, facultySearch=)}" class="btn btn-primary btn-sm">
 	    						Section Management
 	    					</a>
 	    					<a th:href="@{/adminhome/coursedirectory/sections/update(sectionID=${tempSection.sectionID},courseID=${tempSection.courseID})}" class="btn btn-info btn-sm">
