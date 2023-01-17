@@ -14,4 +14,6 @@ public interface EnrollService {
 	
 	public void deleteAllBySectionID(int theSectionID);
 	public void deleteAllByStudentID(int theStudentID);
+	
+	public List<Enroll> findAllBySectionIDBatchOfTenAndSearch(int sectionID, int studentIndex, String studentSearch);
 }

@@ -24,4 +24,6 @@ USE school_management_system_db;
 
 # SELECT * FROM User ORDER BY User.userID LIMIT 0,5; 
 
-select * from User where  User.userID = 5 or User.firstName like "%seth%" or User.lastName like "%seth%" order by User.userID limit 0,5
+# select * from User where  User.userID = 5 or User.firstName like "%seth%" or User.lastName like "%seth%" order by User.userID limit 0,5
+
+select * from Section where Section.sectionID like "%530%";

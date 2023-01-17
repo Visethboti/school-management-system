@@ -62,4 +62,14 @@ public class EnrollServiceImpl implements EnrollService {
 	public void deleteAllByStudentID(int theStudentID) {
 		enrollRepository.deleteAllByStudentID(theStudentID);
 	}
+	
+	@Override
+	public List<Enroll> findAllBySectionIDBatchOfTenAndSearch(int sectionID, int studentIndex, String studentSearch) {
+		if(studentSearch.isEmpty())
+			return enrollRepository.findAllByCourseIDBatchOfTen(sectionID, studentIndex);
+		else {
+			studentSearch = "%" + studentSearch + "%";
+			return enrollRepository.findAllByCourseIDBatchOfTenAndSearch(sectionID, studentIndex, studentSearch);
+		}	
+	}
 }

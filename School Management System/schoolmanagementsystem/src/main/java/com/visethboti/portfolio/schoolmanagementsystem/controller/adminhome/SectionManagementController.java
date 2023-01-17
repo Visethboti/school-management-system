@@ -46,15 +46,23 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping(value={"", "/"})
-	public String listSectionStudentFaculty(@RequestParam("sectionID") int theSectionID, @RequestParam("courseID") int theCourseID, Model theModel) {
-		List<Enroll> enrolls = enrollService.findAllBySectionID(theSectionID);
-		List<Teach> teachs = teachService.findAllBySectionID(theSectionID);
+	public String listSectionStudentFaculty(@RequestParam("sectionID") int sectionID, 
+			@RequestParam("courseID") int courseID, Model theModel,
+			@RequestParam("studentIndex") int studentIndex,
+			@RequestParam("studentSearch") String studentSearch) {
 		
-		// add to the Spring MVC model
+		// get all Sections for this course
+		List<Enroll> enrolls = enrollService.findAllBySectionIDBatchOfTenAndSearch(sectionID, studentIndex, studentSearch);
+		List<Teach> teachs = teachService.findAllBySectionID(sectionID);
+		
+
 		theModel.addAttribute("enrolls", enrolls);
 		theModel.addAttribute("teachs", teachs);
-		theModel.addAttribute("sectionID", theSectionID);
-		theModel.addAttribute("courseID", theCourseID);
+		theModel.addAttribute("sectionID", sectionID);
+		theModel.addAttribute("courseID", courseID);
+		
+		theModel.addAttribute("studentIndex", studentIndex);
+		theModel.addAttribute("studentSearch", studentSearch);
 		
 		return "/admin-home/section-management";
 	}

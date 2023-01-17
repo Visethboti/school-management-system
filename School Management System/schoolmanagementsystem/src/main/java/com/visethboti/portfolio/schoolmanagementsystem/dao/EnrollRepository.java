@@ -22,4 +22,10 @@ public interface EnrollRepository extends JpaRepository<Enroll, Integer> {
 	
 	@Query(nativeQuery=true, value="select count(Enroll.studentID) from Enroll where Enroll.sectionID = ?1")
 	public int getNumberofStudentsEnrolledInSection(int theSectionID);
+	
+	@Query(nativeQuery=true, value="select * from Enroll where Enroll.sectionID = ?1 order by Enroll.studentID limit ?2,10")
+	public List<Enroll> findAllByCourseIDBatchOfTen(int sectionID, int studentIndex);
+	
+	@Query(nativeQuery=true, value="select * from Enroll where Enroll.sectionID = ?1 and Enroll.studentID like ?3 order by Enroll.enrollDate limit ?2,10")
+	public List<Enroll> findAllByCourseIDBatchOfTenAndSearch(int sectionID, int studentIndex, String studentSearch);
 }
