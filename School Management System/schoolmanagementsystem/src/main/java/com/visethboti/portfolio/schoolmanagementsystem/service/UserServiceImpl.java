@@ -196,4 +196,35 @@ public class UserServiceImpl implements UserService {
 		}	
 	}
 
+	@Override
+	public List<User> findAllStudentNotEnrollInSectionBatchOfTenAndSearch(int sectionID,  int studentIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return userRepository.findAllStudentNotEnrollInSectionByBatchOfTen(sectionID, studentIndex);
+		else {
+			if(searchKey.matches("[0-9.]+")) {
+				return userRepository.findAllStudentNotEnrollInSectionBatchOfTenAndSearch(sectionID, studentIndex, Integer.valueOf(searchKey), "%" + searchKey + "%");
+			}
+			else {
+				
+				searchKey = "%" + searchKey + "%";
+				return userRepository.findAllStudentNotEnrollInSectionBatchOfTenAndSearch(sectionID, studentIndex, 0 , searchKey);
+			}	
+		}	
+	}
+	
+	@Override
+	public List<User> findAllFacultyNotAssignInSectionBatchOfTenAndSearch(int sectionID, int facultyIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return userRepository.findAllFacultyNotAssignInSectionByBatchOfTen(sectionID, facultyIndex);
+		else {
+			if(searchKey.matches("[0-9.]+")) {
+				return userRepository.findAllFacultyNotAssignInSectionBatchOfTenAndSearch(sectionID, facultyIndex, Integer.valueOf(searchKey), "%" + searchKey + "%");
+			}
+			else {
+				
+				searchKey = "%" + searchKey + "%";
+				return userRepository.findAllFacultyNotAssignInSectionBatchOfTenAndSearch(sectionID, facultyIndex, 0 , searchKey);
+			}	
+		}	
+	}
 }

@@ -56,7 +56,7 @@ public class CourseDirectoryController {
 		courseService.save(theCourse);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory";
+		return "redirect:/adminhome/coursedirectory?courseIndex=0&search=";
 	}
 	
 	@GetMapping("/update")
@@ -68,6 +68,6 @@ public class CourseDirectoryController {
 	@GetMapping("/delete")
 	public String processDeleteCourse(@RequestParam("courseID") int theID) {
 		courseService.deleteById(theID);
-		return "redirect:/adminhome/coursedirectory";
+		return "redirect:/adminhome/coursedirectory?courseIndex=0&search=";
 	}
 }

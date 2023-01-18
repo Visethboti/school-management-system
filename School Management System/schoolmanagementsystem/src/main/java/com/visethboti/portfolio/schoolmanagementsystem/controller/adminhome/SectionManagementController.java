@@ -72,18 +72,22 @@ public class SectionManagementController {
 	}
 	
 	@GetMapping("/enrollstudent")
-	public String showEnrollStudentPage(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String showEnrollStudentPage(@RequestParam("sectionID") int theSectionID, Model theModel,
+			@RequestParam("studentIndex") int studentIndex,
+			@RequestParam("studentSearch") String studentSearch) {
 		// create model attribute to bind form data
 		
-		Enroll theEnroll = new Enroll();
 		Section theSection = sectionService.findById(theSectionID);
-		List<User> theStudents = userService.findAllStudentNotEnrollInSection(theSectionID);
+		List<User> theStudents = userService.findAllStudentNotEnrollInSectionBatchOfTenAndSearch(theSectionID, studentIndex, studentSearch);
 		Course theCourse = courseService.findById(theSection.getCourseID());
 			
-		theModel.addAttribute("enroll", theEnroll);
 		theModel.addAttribute("section", theSection);
 		theModel.addAttribute("users", theStudents);
-		theModel.addAttribute("course", theCourse);
+		theModel.addAttribute("course", theCourse);	
+		
+		theModel.addAttribute("studentIndex", studentIndex);
+		theModel.addAttribute("studentSearch", studentSearch);
+		theModel.addAttribute("sectionID", theSection.getSectionID());
 		
 		return "/admin-home/enroll-student";
 	}
@@ -101,7 +105,7 @@ public class SectionManagementController {
 		enrollService.save(theEnroll);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=";
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/updateenroll")
@@ -117,22 +121,28 @@ public class SectionManagementController {
 			@RequestParam("userID") int theStudentID,
 			@RequestParam("courseID") int theCourseID) {
 		enrollService.deleteById(theSectionID, theStudentID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=";
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/assignfaculty")
-	public String showAssignFacultyPage(@RequestParam("sectionID") int theSectionID, Model theModel) {
+	public String showAssignFacultyPage(@RequestParam("sectionID") int theSectionID, Model theModel,
+			@RequestParam("facultyIndex") int facultyIndex,
+			@RequestParam("facultySearch") String facultySearch) {
 		// create model attribute to bind form data
 		
-		Teach theTeach = new Teach();
+		
 		Section theSection = sectionService.findById(theSectionID);
-		List<User> theFaculties = userService.findAllFacultyNotAssignInSection(theSectionID);
+		List<User> theFaculties = userService.findAllFacultyNotAssignInSectionBatchOfTenAndSearch(theSectionID, facultyIndex, facultySearch);
 		Course theCourse = courseService.findById(theSection.getCourseID());
 			
-		theModel.addAttribute("teach", theTeach);
+		
 		theModel.addAttribute("section", theSection);
 		theModel.addAttribute("users", theFaculties);
 		theModel.addAttribute("course", theCourse);
+		
+		theModel.addAttribute("facultyIndex", facultyIndex);
+		theModel.addAttribute("facultySearch", facultySearch);
+		theModel.addAttribute("sectionID", theSection.getSectionID());
 		
 		return "/admin-home/assign-faculty";
 	}
@@ -150,7 +160,7 @@ public class SectionManagementController {
 		teachService.save(theTeach);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=";
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/deleteteach")
@@ -158,6 +168,6 @@ public class SectionManagementController {
 			@RequestParam("userID") int theFacultyID,
 			@RequestParam("courseID") int theCourseID) {
 		teachService.deleteById(theSectionID, theFacultyID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=";
+		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 }
