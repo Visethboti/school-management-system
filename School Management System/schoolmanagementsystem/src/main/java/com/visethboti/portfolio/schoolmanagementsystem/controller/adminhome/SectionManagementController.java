@@ -24,7 +24,7 @@ import com.visethboti.portfolio.schoolmanagementsystem.service.TeachService;
 import com.visethboti.portfolio.schoolmanagementsystem.service.UserService;
 
 @Controller
-@RequestMapping(value={"/adminhome/coursedirectory/sections/management"})
+@RequestMapping(value={"/adminhome/sectiondirectory/management"})
 public class SectionManagementController {
 	private SectionService sectionService;
 	private UserService userService;
@@ -105,7 +105,7 @@ public class SectionManagementController {
 		enrollService.save(theEnroll);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
+		return "redirect:/adminhome/sectiondirectory/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/updateenroll")
@@ -121,7 +121,7 @@ public class SectionManagementController {
 			@RequestParam("userID") int theStudentID,
 			@RequestParam("courseID") int theCourseID) {
 		enrollService.deleteById(theSectionID, theStudentID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
+		return "redirect:/adminhome/sectiondirectory/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/assignfaculty")
@@ -160,7 +160,7 @@ public class SectionManagementController {
 		teachService.save(theTeach);
 		
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
+		return "redirect:/adminhome/sectiondirectory/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 	
 	@GetMapping("/deleteteach")
@@ -168,6 +168,6 @@ public class SectionManagementController {
 			@RequestParam("userID") int theFacultyID,
 			@RequestParam("courseID") int theCourseID) {
 		teachService.deleteById(theSectionID, theFacultyID);
-		return "redirect:/adminhome/coursedirectory/sections/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
+		return "redirect:/adminhome/sectiondirectory/management?sectionID="+theSectionID+"&courseID="+theCourseID+"&studentIndex=0&studentSearch=&facultyIndex=0&facultySearch=";
 	}
 }

@@ -15,17 +15,36 @@
 	<span class="navbar-brand mb-0 h1">Admin Home</span>
 	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		<div class="navbar-nav">
-			<a th:href="@{/adminhome/userdirectory?userIndex=0&search=}" class="nav-item nav-link active">User Management</a>
-    		<a th:href="@{/adminhome/coursedirectory?courseIndex=0&search=}" class="nav-item nav-link active">Course and Section Management</a>
+
 		</div>
 	</div>
 	<a th:href="@{/logout}" class="navbar-brand h2">Logout</a>
   </nav>
   <body>
     <main>
-    	<div class="container">
-			
-    		
+    	<div class="container ">
+			<div class="row mt-5 mb-4" style="height: 150px; text-align: center;">
+				<div class="col btn-group" >
+					<a class="btn btn-outline-dark d-flex justify-content-center align-items-center" th:href="@{/adminhome/userdirectory/studentdirectory?userIndex=0&search=}"><span class="h4">Student Management</span></a>
+				</div>
+				<div class="col btn-group ">
+					<a class="btn btn-outline-dark d-flex d-flex justify-content-center align-items-center" th:href="@{/adminhome/userdirectory/facultydirectory?userIndex=0&search=}"  style="text-align:center;"><span class="h4">Faculty Management</span></a>
+				</div>
+				<div class="col btn-group">
+					<a class="btn btn-outline-dark d-flex justify-content-center align-items-center" th:href="@{/adminhome/userdirectory/admindirectory?userIndex=0&search=}"><span class="h4">Admin Management</span></a>
+				</div>
+			</div>
+			<div class="row" style="height: 150px;">
+				<div class="col btn-group">
+					<a class="btn btn-outline-dark d-flex justify-content-center align-items-center" th:href="@{/adminhome/userdirectory?userIndex=0&search=}"><span class="h4">All User Management</span></a>
+				</div>
+				<div class="col btn-group">
+					<a class="btn btn-outline-dark d-flex justify-content-center align-items-center" th:href="@{/adminhome/coursedirectory?courseIndex=0&search=}"><span class="h4">Course Management</span></a>
+				</div>
+				<div class="col btn-group">
+					<a class="btn btn-outline-dark d-flex justify-content-center align-items-center" th:href="@{/adminhome/sectiondirectory?sectionIndex=0&search=}"><span class="h4">Section and Enrollment Management</span></a>
+				</div>
+			</div>
     	</div>
     </main>
   </body>

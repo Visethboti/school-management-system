@@ -115,7 +115,7 @@
 	    				<td th:text="${tempUser.sex}"/>
 	    				<td th:text="${tempUser.enabled}"/>
 	    				<td>
-	    					<a th:href="@{/adminhome/coursedirectory/sections/management/saveenroll(userID=${tempUser.userID},sectionID=${section.sectionID},courseID=${section.courseID})}" class="btn btn-info btn-sm">
+	    					<a th:href="@{/adminhome/sectiondirectory/management/saveenroll(userID=${tempUser.userID},sectionID=${section.sectionID},courseID=${section.courseID})}" class="btn btn-info btn-sm">
 	    						Enroll Student
 	    					</a>
 	    				</td>
@@ -126,7 +126,7 @@
 	    		
     		<hr class="col-md-8 offset-md-2">
     		<div class="col-md-8 offset-md-2">
-    			<a th:href="@{/adminhome/coursedirectory/sections/management(sectionID=${section.sectionID},courseID=${course.courseID}, studentIndex=0, studentSearch=, facultyIndex=0, facultySearch=)}" 
+    			<a th:href="@{/adminhome/sectiondirectory/management(sectionID=${section.sectionID},courseID=${course.courseID}, studentIndex=0, studentSearch=, facultyIndex=0, facultySearch=)}" 
     			class="btn btn-secondary btn-lg">Back to Section Management</a>
     		</div>
     	</div>

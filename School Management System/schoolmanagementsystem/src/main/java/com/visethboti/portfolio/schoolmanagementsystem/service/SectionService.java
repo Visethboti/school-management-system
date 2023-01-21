@@ -16,4 +16,5 @@ public interface SectionService {
 	public List<Section> findSectionsByFacultyIDTeach(int theFacultyID);
 	
 	public List<Section> findAllByCourseIDBatchOfTenAndSearch(int courseID, int sectionIndex, String searchKey);
+	public List<Section> findAllByBatchOfTenAndSearch(int sectionIndex, String searchKey);
 }

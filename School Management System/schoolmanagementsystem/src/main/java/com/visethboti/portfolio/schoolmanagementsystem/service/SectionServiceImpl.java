@@ -80,4 +80,14 @@ public class SectionServiceImpl implements SectionService {
 			return sectionRepository.findAllByCourseIDBatchOfTenAndSearch(courseID, sectionIndex, searchKey);
 		}	
 	}
+	
+	@Override
+	public List<Section> findAllByBatchOfTenAndSearch(int sectionIndex, String searchKey) {
+		if(searchKey.isEmpty())
+			return sectionRepository.findAllBatchOfTen(sectionIndex);
+		else {
+			searchKey = "%" + searchKey + "%";
+			return sectionRepository.findAllBatchOfTenAndSearch(sectionIndex, searchKey);
+		}	
+	}
 }
